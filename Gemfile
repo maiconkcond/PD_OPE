@@ -34,9 +34,6 @@ gem 'spring',        group: :developm
 
 gem 'rails_12factor', group: :production
 
-gem 'pg'
-
-gem 'ruby' '2.2.3'
 
 
 # Use jquery as the JavaScript library
