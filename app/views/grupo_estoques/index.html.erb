@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Grupo Estoques</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descricao loga</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grupo_estoques.each do |grupo_estoque| %>
+      <tr>
+        <td><%= grupo_estoque.nome %></td>
+        <td><%= grupo_estoque.descricao_loga %></td>
+        <td><%= link_to 'Show', grupo_estoque %></td>
+        <td><%= link_to 'Edit', edit_grupo_estoque_path(grupo_estoque) %></td>
+        <td><%= link_to 'Destroy', grupo_estoque, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grupo estoque', new_grupo_estoque_path %>

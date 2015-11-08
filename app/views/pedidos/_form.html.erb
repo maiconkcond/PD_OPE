@@ -1,0 +1,52 @@
+<%= form_for(@pedido) do |f| %>
+  <% if @pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pedido.errors.count, "error") %> prohibited this pedido from being saved:</h2>
+
+      <ul>
+      <% @pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :client_id %><br>
+    <%= f.text_field :client_id %>
+       <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+<%= form_for(@itens_pedido) do |f| %>
+  <% if @itens_pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@itens_pedido.errors.count, "error") %> prohibited this itens_pedido from being saved:</h2>
+
+      <ul>
+      <% @itens_pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :estoque_id %><br>
+    <%= f.text_field :estoque_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pedido_id %><br>
+    <%= f.text_field :pedido_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

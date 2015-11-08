@@ -1,0 +1,272 @@
+<script type="text/javascript">
+function reapareceDiv() {
+  document.getElementById("alert-warning").style.display = "block";
+}
+
+function escondeDiv() {
+  document.getElementById("alert-warning").style.display = "none";
+}
+</script>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x45" %>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav">
+
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+       <li><a href="#" ><%= image_tag "relatorios.png", width: '32', height: '32', alt: 'config' %></a></li>
+       <li><a href="#" ><%= image_tag "suporte.png", width: '32', height: '32', alt: 'suporte' %></a></li>
+       <li><a href="#" id="config"><%= image_tag "config.png", width: '32', height: '32', alt: 'config' %></a></li>
+
+
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag "exit.png", size: "45x45" %><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+<div class="row"><!--ROW PRINCIPAL -->
+  <div class="col-md-2 sidebar">
+    <div id='cssmenu' class="col-md-12">
+      <ul>
+        <li class='active has-sub'><a href='#'><span>Caixa</span></a>
+          <ul>
+            <li><a href='#'><span>Abrir caixa</span></a></li>
+            <li><a href='#'><span>Caixa</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Pedido</span></a>
+          <ul>
+            <li><a href='#'><span>Pedidos diario</span></a></li>
+            <li><a href='#'><span>Consultar</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Compra</span></a>
+          <ul>
+            <li><a href='#'><span>Compra</span></a></li>
+            <li><a href='#'><span>Pedido de compra</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Cadastros</span></a>
+          <ul>
+            <li ><a href='#'><span>Cliente</span></a></li>
+            <li ><a href='#'><span>Fabricante</span></a></li>
+            <li ><a href='#'><span>Fornecedor</span></a></li>
+            <li><a href='#'><span>Funcionario</span></a></li>
+            <li ><a href='#'><span>Usuário</span></a></li>
+            <li ><a href='#'><span>Insumo</span></a></li>
+            <li ><a href='#'><span>Grupo de estoque</span></a></li>
+            <li ><a href='#'><span>Unidade de medida</span></a></li>
+            <li ><a href='#'><span>Formas de Pagamento</span></a></li> 
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Estoque</span></a>
+          <ul>
+            <li ><a href='#'><span>Novo produto</span></a></li>
+            <li ><a href='#'><span>Ajustar estoque</span></a></li>
+            <li ><a href='#'><span>Consultar</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Financeiro</span></a>
+          <ul>
+            <li><a href='#'><span>Contas a pagar</span></a></li>
+            <li><a href='#'><span>Contas a receber</span></a></li>
+          </ul>
+        </li>
+        <li class='last'><a href='#'><span></span></li>
+      </ul>
+    </div>
+  </div>  
+  <div class="col-md-10 fundo-ped"> 
+    <button type="button" class="btn btn-primary btn-lg inserir_pedido" data-toggle="modal" data-target="#myModal">
+      + Realizar pedido 
+    </button>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
+        <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <% @pedido.each do |pedido| %>
+          <% if pedido.status == 1 %>
+          <div class="itensPedido">
+           <%= pedido.client.nome %><br/>
+           endereço : <%= pedido.client.endereco %><br/>
+           <div class="iconsPedido">
+            <% agora=Time.new %>
+            <% 
+            now=agora.min
+            pd=pedido.created_at.min
+            dif=now - pd
+
+            if dif > 1 or dif < 0
+              ok="atrasado!!"
+            else
+              ok="em espera!"
+            end
+            %>
+            <%= now %>
+            <%= pd %>
+            <%= dif %>
+            <%= ok %>
+            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="tab2">
+        <% @pedido.each do |pedido| %>
+        <% if pedido.status == 2 %>
+        <div class="itensPedido">
+         <%= pedido.client.nome %><br/>
+         endereço : <%= pedido.client.endereco %><br/>
+         <div class="iconsPedido">
+          <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+</div> <!--ROW PRINCIPAL -->
+
+
+
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Adicione um pedido</h4>
+        </div>
+        <div class="modal-body">
+
+        
+        <%= form_for(@pedido2) do |p| %>
+          <%= form_for(@client2, :html => { :class => 'form-inline' })  do |f| %>
+          <div class="row div_tel_busc">
+            <div class="field form-horizontal col-md-4"> 
+              <div class="input-group col-md-12"> 
+                <input id="tel1" name="tel" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Telefone" onclick="reapareceDiv()" onBlur="escondeDiv()"/>  
+              </div>
+            </div>
+            <div class="field form-horizontal col-md-2"> 
+              <div class="input-group col-md-12"> 
+                <button type="button" class="btn btn-warning">Buscar</button>
+              </div>
+            </div>
+        
+            <div class="field form-horizontal col-md-6"> 
+              <div class="input-group col-md-12"> 
+                <div class="alert alert-warning alert-dismissible" id="alert-warning" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Dica!</strong> Digite o numero para buscar na base de cadastro.
+                </div>
+              </div>
+            </div>
+          </div>
+    
+
+            
+
+        <h4>Informações do cliente</h4>
+        </hr>
+
+          <div class="row">
+          <div class="field form-horizontal col-md-2">
+            <%= p.label :client_id, class: "sr-only" %>
+            <div class="input-group col-md-12">
+              <%= p.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID" %>
+            </div>
+          </div>
+          <div class="field form-horizontal col-md-10">
+              <%= f.label :nome, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome" %>
+              </div>
+            </div>
+        
+          </div>
+
+          <div class="row">
+            <div class="field form-horizontal col-md-9">
+              <%= f.label :endereco, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço"  %>
+              </div>
+            </div>
+
+            <div class="field form-horizontal col-md-3">
+              <%= f.label :complemento, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl." %>
+              </div>
+            </div>
+          </div>
+
+           <div class="row">
+            <div class="field form-horizontal col-md-5">
+              <%= f.label :bairro, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro"  %>
+              </div>
+            </div>
+
+            <div class="field form-horizontal col-md-2">
+              <%= f.label :cep, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP" %>
+              </div>
+            </div>
+            <div class="field form-horizontal col-md-5">
+              <%= f.label :obs, class: "sr-only" %>
+              <div class="input-group col-md-12">
+                <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "Ponto de Referência" %>
+              </div>
+            </div>
+          </div>   
+       <% end %>
+
+        <h4>Informações dos produtos</h4>
+
+
+          <!--final do formulario clientes-->
+          <div class="modal-footer">
+            <div class="actions">
+              <%= p.submit  "Finalizar / Salvar", class: "btn btn-primary btn-lg "%>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+          
+            <% end %> 
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @unid_med.descricao %>
+</p>
+
+<p>
+  <strong>Abreviacao:</strong>
+  <%= @unid_med.abreviacao %>
+</p>
+
+<%= link_to 'Edit', edit_unid_med_path(@unid_med) %> |
+<%= link_to 'Back', unid_meds_path %>

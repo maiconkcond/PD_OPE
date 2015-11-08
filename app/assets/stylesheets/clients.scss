@@ -1,0 +1,62 @@
+// Place all the styles related to the Clients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Dosis:400,600,800,700);
+
+body { 
+	overflow-x: hidden; 
+	background-color: #ede7f6 !important;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.modal-header{
+	background-color:  #3f51b5;
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.modal-title{
+	color: white;
+	font-family: 'Dosis', sans-serif;
+}
+
+.modal-content{
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;	
+}
+div#conteudo {
+	padding: 0 !important;
+	margin: 10px !important;
+}
+
+
+.consultar{
+	float: right;
+	padding: 10px;
+}
+
+.novo{
+	padding: 10px;
+}
+
+.cabecalho-tabela{
+	background-color: #424242;
+	color: white;
+	text-align: center;	
+}
+
+.tit-cab{
+	font-size: 13pt;
+}

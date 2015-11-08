@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Funcionarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Cargo</th>
+      <th>Salario</th>
+      <th>Comissao</th>
+      <th>Endereco</th>
+      <th>Cep</th>
+      <th>Tel</th>
+      <th>Cel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @funcionarios.each do |funcionario| %>
+      <tr>
+        <td><%= funcionario.nome %></td>
+        <td><%= funcionario.cargo %></td>
+        <td><%= funcionario.salario %></td>
+        <td><%= funcionario.comissao %></td>
+        <td><%= funcionario.endereco %></td>
+        <td><%= funcionario.cep %></td>
+        <td><%= funcionario.tel %></td>
+        <td><%= funcionario.cel %></td>
+        <td><%= link_to 'Show', funcionario %></td>
+        <td><%= link_to 'Edit', edit_funcionario_path(funcionario) %></td>
+        <td><%= link_to 'Destroy', funcionario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Funcionario', new_funcionario_path %>

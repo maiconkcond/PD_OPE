@@ -1,0 +1,63 @@
+// Place all the styles related to the estoques controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+.panel-default{
+	border: 1px solid #424242 !important; 
+	background-color: #F0F0F0;
+	border-radius: 40px 40px 40px 40px !important;
+	-moz-border-radius: 40px 40px 40px 40px !important;
+	-webkit-border-radius: 40px 40px 40px 40px !important;
+	
+}	
+.novo{
+	text-align: center !important;
+}
+
+body{
+	background-color: #F0F0F0 !important;
+}
+.tit-form{
+	color: #424242;
+	text-transform: bold;
+	text-align: center;
+}
+
+.breadcrumb{
+	background-color: #F0F0F0;
+}
+
+.nav-menu ul{
+	padding-top:10px;
+	padding-bottom:10px;
+	margin:0px;
+	background-color:#750709;
+	list-style:none;
+
+}
+
+.nav-menu ul li { display: inline; }
+
+
+.nav-menu ul li a {
+    	padding: 2px 10px;
+    	display: inline-block;
+    	font-size: 15px;
+     
+    	/* visual do link */
+    	background-color:#750709;
+    	color: #FFFFFF;
+    	text-decoration: none;
+    	border-bottom:3px solid #750709;
+    	font-family: 'Ubuntu', sans-serif;
+    }
+
+.nav-menu ul li a:hover {
+    	background-color:#750709;
+    	color: #FFCD00;
+    	border-bottom:3px solid #FFCD00;
+    }
+span{
+	color: white;
+}

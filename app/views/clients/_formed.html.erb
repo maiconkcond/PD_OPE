@@ -1,0 +1,245 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+
+$("#myModal").modal("show");
+
+});
+</script>
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x45" %>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav">
+
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+       <li><a href="#" ><%= image_tag "relatorios.png", width: '32', height: '32', alt: 'config' %></a></li>
+       <li><a href="#" ><%= image_tag "suporte.png", width: '32', height: '32', alt: 'suporte' %></a></li>
+       <li><a href="#" id="config"><%= image_tag "config.png", width: '32', height: '32', alt: 'config' %></a></li>
+
+
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag "exit.png", size: "45x45" %><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+<div class="row"><!--ROW PRINCIPAL -->
+  <div class="col-md-2 sidebar">
+    <div id='cssmenu' class="col-md-12">
+      <ul>
+        <li class='active has-sub'><a href='#'><span>Caixa</span></a>
+          <ul>
+            <li><a href='#'><span>Abrir caixa</span></a></li>
+            <li><a href='#'><span>Caixa</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Pedido</span></a>
+          <ul>
+            <li><a href='#'><span>Pedidos diario</span></a></li>
+            <li><a href='#'><span>Consultar</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Compra</span></a>
+          <ul>
+            <li><a href='#'><span>Compra</span></a></li>
+            <li><a href='#'><span>Pedido de compra</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Cadastros</span></a>
+          <ul>
+            <li ><a href='#'><span>Cliente</span></a></li>
+            <li ><a href='#'><span>Fabricante</span></a></li>
+            <li ><a href='#'><span>Fornecedor</span></a></li>
+            <li><a href='#'><span>Funcionario</span></a></li>
+            <li ><a href='#'><span>Usuário</span></a></li>
+            <li ><a href='#'><span>Insumo</span></a></li>
+            <li ><a href='#'><span>Grupo de estoque</span></a></li>
+            <li ><a href='#'><span>Unidade de medida</span></a></li>
+            <li ><a href='#'><span>Formas de Pagamento</span></a></li> 
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Estoque</span></a>
+          <ul>
+            <li ><a href='#'><span>Novo produto</span></a></li>
+            <li ><a href='#'><span>Ajustar estoque</span></a></li>
+            <li ><a href='#'><span>Consultar</span></a></li>
+          </ul>
+        </li>
+        <li class='active has-sub'><a href='#'><span>Financeiro</span></a>
+          <ul>
+            <li><a href='#'><span>Contas a pagar</span></a></li>
+            <li><a href='#'><span>Contas a receber</span></a></li>
+          </ul>
+        </li>
+        <li class='last'><a href='#'><span></span></li>
+      </ul>
+    </div>
+  </div>  
+  <div class="col-md-10 fundo-ped"> 
+    <button type="button" class="btn btn-primary btn-lg inserir_pedido" data-toggle="modal" data-target="#myModal">
+      + Realizar pedido 
+    </button>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
+        <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <% @pedido.each do |pedido| %>
+          <% if pedido.status == 1 %>
+          <div class="itensPedido">
+           <%= pedido.client.nome %><br/>
+           endereço : <%= pedido.client.endereco %><br/>
+           <div class="iconsPedido">
+            <% agora=Time.new %>
+            <% 
+            now=agora.min
+            pd=pedido.created_at.min
+            dif=now - pd
+
+            if dif > 1 or dif < 0
+              ok="atrasado!!"
+            else
+              ok="em espera!"
+            end
+            %>
+            <%= now %>
+            <%= pd %>
+            <%= dif %>
+            <%= ok %>
+            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="tab2">
+        <% @pedido.each do |pedido| %>
+        <% if pedido.status == 2 %>
+        <div class="itensPedido">
+         <%= pedido.client.nome %><br/>
+         endereço : <%= pedido.client.endereco %><br/>
+         <div class="iconsPedido">
+          <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+</div> <!--ROW PRINCIPAL -->
+
+
+
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Adicione um pedido</h4>
+        </div>
+        <div class="modal-body">
+
+
+
+
+
+
+ <div class="col-md-4">
+      <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
+        <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Buscar..." %>
+        <button type="submit" class="btn btn btn-primary">Ir!</button>
+      </div>
+<% end %>
+
+  
+  <table class="table table-striped table-hover">
+    <thead class="cabecalho-tabela">
+      <tr class="row-fluid">
+        <td class="tit-cab">Nome</td>
+        <td class="tit-cab">Endereco</td>
+        <td class="tit-cab">Complemento</td>
+        <td class="tit-cab">Bairro</td>
+        <td class="tit-cab">Cidade</td>
+        <td class="tit-cab">CEP</td>
+        <td class="tit-cab">Telefone</td>
+        <!--<v class="col-md-1">Tel2</td>-->
+        <td class="tit-cab">Celular</td>
+        <!--<td class="col-md-1">Cel2</td>-->
+        <!--<td class="col-md-1">Email</td>-->
+        <!--<td class="col-md-1">Obs</td>-->
+        <td colspan="3"></td>
+      </tr>
+    </thead>
+
+    <tbody class="table-striped">
+      <% @clients.each do |client| %>
+        <tr class="row-fluid">
+          <td><%= client.nome %></td>
+          <td><%= client.endereco %></td>
+          <td><%= client.complemento %></td>
+          <td><%= client.bairro %></td>
+          <td><%= client.cidade %></td>
+          <td><%= client.cep %></td>
+          <td><%= client.tel1 %></td>
+          <!--<td class="col-md-1"><%= client.tel2 %></td>-->
+          <td><%= client.cel1 %></td>
+          <!--<td class="col-md-1"><%= client.cel2 %></td>-->
+          <!--<td class="col-md-1"><%= client.email %></td>-->
+          <!--<td class="col-md-1"><%= client.obs %></td>-->
+          <td><a href="/cadastra/<%= client.id %>">Criar pedido</a></td>
+          <td><%= link_to image_tag('view.png'), client %></td>
+          <td><%= link_to image_tag('editar.png'), edit_client_path(client) %></td>
+          <td><%= link_to image_tag('excluir.png'), client, method: :delete, data: { confirm: 'Confirmar' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+          
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Limpar</button>
+          <button type="button" class="btn btn-primary">Finalizar / Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>

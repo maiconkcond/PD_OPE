@@ -1,0 +1,305 @@
+
+<nav class="navbar navbar-default nav-menu">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "LOGO3.png", size: "130x45" %>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li><a  href="#" class="menu ">FABRICANTE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">FORNECEDOR</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">GRUPO DE ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">AJ. ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">CONSULTAR PRODUTO</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<ol class="breadcrumb">
+  <li><a href="http://localhost:3000">Inicio</a></li>
+  <li class="active">Cadastro de Produtos</li>
+</ol>
+<div class="row-fluid">
+  <div class="panel panel-default col-md-offset-3 col-md-6 col-md-offset-3">
+
+
+<%= form_for(@estoque) do |f| %>
+  <% if @estoque.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@estoque.errors.count, "error") %> prohibited this estoque from being saved:</h2>
+
+      <ul>
+      <% @estoque.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <!-- Formulario -->
+    <h4 class="tit-form">Informações do produto</h4>
+    <div class="field form-horizontal">
+      <%= f.label :nome, class: "sr-only" %></br>
+      <div class="input-group col-md-12">
+        <%= f.text_field :nome, class: "form-control", id:"exampleInputAmount", placeholder: "Descrição Produto" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :fabricante_id, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :fabricante_id, Fabricante.all, :id, :nome, {:prompt => ''}, {:class => 'form-control'}  %> 
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :fornecedor_id, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :fornecedor_id, Fornecedor.all, :id, :razao_social, {:prompt => ''}, {:class => 'form-control'}  %> 
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :grupo_estoque_id, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :grupo_estoque_id, GrupoEstoque.all, :id, :nome, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-5">
+        <%= f.label :cod_barras, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.text_field :cod_barras, class: "form-control", id:"exampleInputAmount", placeholder: "Código de Barras" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :quantidade, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :quantidade, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+       <div class="field form-horizontal col-md-2">
+        <%= f.label :unid_medida, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :unid_medida, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :qtd_minima, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_minima, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade Mínima", step: "any" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :valor_custo, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :valor_custo, class: "form-control", id:"exampleInputAmount", placeholder: "Preço de Custo", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :margem_lucro, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :margem_lucro, class: "form-control", id:"exampleInputAmount", placeholder: "Margem á aplicar", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-4">
+        <%= f.label :valor_venda, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :valor_venda, class: "form-control", id:"exampleInputAmount", placeholder: "Preço de Venda", step: "any" %>
+        </div>
+      </div>
+    </div>
+  
+
+  
+    <h4 class="tit-form">Itens de Produção</h4>
+    <div class="row">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo1, class: "sr-only" %>
+        <div class="input-group col-md-12">
+         <%= f.collection_select :insumo1, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+       </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo1, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo1, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins1, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins1, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="field form-horizontal col-md-7">
+      <%= f.label :insumo2, class: "sr-only"  %>
+      <div class="input-group col-md-12">
+        <%= f.collection_select :insumo2, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+      </div>
+    </div>
+    <div class="field form-horizontal col-md-2">
+      <%= f.label :qtd_insumo2, class: "sr-only" %>
+      <div class="input-group col-md-12">
+        <%= f.number_field :qtd_insumo2, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+      </div>  
+    </div>
+    <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins2, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins2, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">  
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo3, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo3, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>  
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo3, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo3, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>    
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins3, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins3, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo4, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo4, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo4, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo4, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins4, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins4, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo5, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo5, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo5, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo5, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins5, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins5, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo6, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo6, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo6, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo6, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins6, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins6, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo7, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo7, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo7, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo7, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins7, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins7, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field form-horizontal col-md-7">
+        <%= f.label :insumo8, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :insumo8, Insumo.all, :id, :descricao, {:include_blank => ''}, {:class => 'form-control', placeholder: "Seleciona o Insumo"} %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-2">
+        <%= f.label :qtd_insumo8, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.number_field :qtd_insumo8, class: "form-control", id:"exampleInputAmount", placeholder: "Quantidade", step: "any" %>
+        </div>
+      </div>
+      <div class="field form-horizontal col-md-3">
+        <%= f.label :med_ins8, class: "sr-only" %>
+        <div class="input-group col-md-12">
+          <%= f.collection_select :med_ins8, UnidMed.all, :id, :descricao, {:prompt => ''}, {:class => 'form-control'}  %>
+        </div>
+      </div>
+    </div>
+
+  <h4 class="tit-form">Informações Gerais</h4>  
+      <div class="field form-horizontal">
+        <%= f.label :obs, class: "sr-only"  %>
+        <div class="input-group col-md-12">
+          <%= f.text_area :obs, class: "form-control", id:"exampleInputAmount", placeholder: "Observações gerais" %>
+        </div>
+      </div>
+  <div class="actions">
+    <%= f.submit "Gravar", class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>
+</div>
+</div>

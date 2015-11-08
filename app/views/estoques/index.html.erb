@@ -1,0 +1,71 @@
+<nav class="navbar navbar-default nav-menu">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "LOGO3.png", size: "130x45" %>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li><a  href="#" class="menu ">FABRICANTE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">FORNECEDOR</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">GRUPO DE ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">AJ. ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">CADASTRAR PRODUTO</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<ol class="breadcrumb">
+  <li><a href="http://localhost:3000">Inicio</a></li>
+  <li class="active">Cadastro de Produtos</li>
+</ol>
+
+<table class="table table-striped table-hover">
+  <thead class="cabecalho-tabela">
+    <tr class="row-fluid">
+      <th class="tit-cab">Nome</th>
+      <th class="tit-cab">Fabricante</th>
+      <th class="tit-cab">Fornecedor</th>
+      <th class="tit-cab">Grupo estoque</th>
+      <th class="tit-cab">Cod. Barras</th>
+      <th class="tit-cab">Quantidade</th>
+      <th class="tit-cab">Un.Medida</th>
+      <th class="tit-cab">Valor Custo</th>
+      <th class="tit-cab">Margem</th>
+      <th class="tit-cab">Valor Venda</th>
+      <th class="tit-cab">Observação</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody class="table-striped">
+    <% @estoques.each do |estoque| %>
+      <tr class="row-fluid">
+        <td><%= estoque.nome %></td>
+        <td><%= estoque.fabricante.nome %></td>
+        <td><%= estoque.fornecedor.razao_social %></td>
+        <td><%= estoque.grupo_estoque.nome %></td>
+
+        <td><%= estoque.cod_barras %></td>
+        <td><%= estoque.quantidade %></td>
+
+        <td><%= estoque.valor_custo %></td>
+        <td><%= estoque.margem_lucro %></td>
+        <td><%= estoque.valor_venda %></td>
+        <td><%= estoque.obs %></td>
+
+
+
+        <td><%= link_to image_tag('view.png'), estoque %></td>
+        <td><%= link_to image_tag('editar.png'), edit_estoque_path(estoque) %></td>
+        <td><%= link_to image_tag('excluir.png'), estoque, method: :delete, data: { confirm: 'Confirmar?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

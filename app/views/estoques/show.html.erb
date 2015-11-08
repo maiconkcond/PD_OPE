@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default nav-menu">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "LOGO3.png", size: "130x45" %>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li><a  href="#" class="menu ">FABRICANTE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">FORNECEDOR</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">GRUPO DE ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">AJ. ESTOQUE</a></li>
+          <span>|</span>
+          <li><a  href="#" class="menu">CADASTRAR PRODUTO</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<ol class="breadcrumb">
+  <li><a href="http://localhost:3000">Inicio</a></li>
+  <li class="active">Listas de produtos</li>
+</ol>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @estoque.nome %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @estoque.quantidade %>
+</p>
+
+<p>
+  <strong>Fabricante:</strong>
+  <%= @estoque.fabricante %>
+</p>
+
+<p>
+  <strong>Fornecedor:</strong>
+  <%= @estoque.fornecedor %>
+</p>
+
+<p>
+  <strong>Grupo estoque:</strong>
+  <%= @estoque.grupo_estoque %>
+</p>
+
+<%= link_to 'Edit', edit_estoque_path(@estoque) %> |
+<%= link_to 'Back', estoques_path %>

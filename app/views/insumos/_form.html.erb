@@ -1,0 +1,25 @@
+<%= form_for(@insumo) do |f| %>
+  <% if @insumo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@insumo.errors.count, "error") %> prohibited this insumo from being saved:</h2>
+
+      <ul>
+      <% @insumo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :quantidade %><br>
+    <%= f.text_field :quantidade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

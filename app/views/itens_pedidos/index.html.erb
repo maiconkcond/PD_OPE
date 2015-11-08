@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Itens Pedidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Estoque</th>
+      <th>Pedido</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @itens_pedidos_find.each do |itens_pedido| %>
+      <tr>
+        <td><%= itens_pedido.estoque.nome %></td>
+        <td><%= itens_pedido.pedido.client.nome %></td>
+        <td><%= link_to 'Show', itens_pedido %></td>
+        <td><%= link_to 'Edit', edit_itens_pedido_path(itens_pedido) %></td>
+        <td><%= link_to 'Destroy', itens_pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Itens pedido', new_itens_pedido_path %>

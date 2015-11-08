@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PizzariaDelivery</title>
+  <%= stylesheet_link_tag 'login/session' %>
+
+</head>
+<body id="background">
+
+
+
+<div id="login">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+
+    <h4 id="titulo"><%= t('.sign_in', :default => "Pizzaria Delivery") %></h4>
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: 'E-MAIL' %>
+      </div>
+      <div class="form-group">
+  
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" ,placeholder: 'SENHA'%>
+      </div>
+      <%= f.submit  t('.sign_in', :default => "Entrar"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>
+</body>
+</html>
