@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20151104042906) do
     t.string   "nome",       limit: 255
     t.string   "tel1",       limit: 255
     t.string   "tel2",       limit: 255
+    t.string   "tel3",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -143,13 +144,6 @@ ActiveRecord::Schema.define(version: 20151104042906) do
   end
 
   add_index "pedidos", ["client_id"], name: "index_pedidos_on_client_id", using: :btree
-
-  create_table "produtos", force: :cascade do |t|
-    t.string   "tipo",       limit: 255
-    t.string   "nome",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
 
   create_table "unid_meds", force: :cascade do |t|
     t.string   "descricao",  limit: 255
