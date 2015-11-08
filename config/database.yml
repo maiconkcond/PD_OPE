@@ -8,6 +8,11 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#   
+#   
+#
+#
+#
 #
 default: &default
   adapter: mysql2
@@ -17,7 +22,7 @@ default: &default
   password: 
   #socket: /opt/lampp/var/mysql/mysql.sock
   socket: /var/run/mysqld/mysqld.sock
-  
+
 development:
   <<: *default
   database: PD_OPE_development
@@ -49,7 +54,13 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  #<<: *default
+  #database: PD_OPE_production
+  #username: PD_OPE
+  #password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
+  adapter: postgresql
   database: PD_OPE_production
-  username: PD_OPE
-  password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
+  username: root
+  password: root
+  encoding: utf8
+  schema_search_path: <database_schema> (default - public)
