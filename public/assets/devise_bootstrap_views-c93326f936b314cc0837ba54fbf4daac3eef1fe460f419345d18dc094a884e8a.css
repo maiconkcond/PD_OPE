@@ -1,0 +1,13 @@
+/* line 1, /usr/local/lib/ruby/gems/2.2.0/gems/devise-bootstrap-views-0.0.6/app/assets/stylesheets/devise_bootstrap_views.scss */
+.float-none {
+  float: none;
+}
+
+/* line 5, /usr/local/lib/ruby/gems/2.2.0/gems/devise-bootstrap-views-0.0.6/app/assets/stylesheets/devise_bootstrap_views.scss */
+.panel-heading {
+  padding: 15px;
+}
+/* line 7, /usr/local/lib/ruby/gems/2.2.0/gems/devise-bootstrap-views-0.0.6/app/assets/stylesheets/devise_bootstrap_views.scss */
+.panel-heading h4 {
+  margin: 0px;
+}

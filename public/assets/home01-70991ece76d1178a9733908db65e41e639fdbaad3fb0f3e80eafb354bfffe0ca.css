@@ -1,0 +1,124 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+/* line 17, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.panel-headin {
+  padding: 0px !important;
+}
+
+/* line 21, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.panel-group {
+  margin-bottom: 100% !important;
+  height: 100%;
+  padding: 0px !important;
+  border-radius: 0px !important;
+}
+
+/* line 29, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.botoes {
+  margin-top: 0px important;
+}
+
+/* line 32, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.panel-default {
+  margin-top: 0px important;
+  border-radius: 0px;
+}
+
+/* line 37, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.panel-body {
+  padding-left: 14px !important;
+}
+
+/* line 43, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.navbar {
+  background: #750709 !important;
+  margin-bottom: 0 !important;
+}
+
+/* line 49, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+a#pedido {
+  color: white;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+/* line 55, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+h2#titulo {
+  font-family: 'Pacifico', cursive !important;
+  padding: 5px;
+  margin: 0;
+  border-left: 5px;
+  color: white;
+}
+
+/* line 62, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+a.dropdown-toggle {
+  padding: 0 !important;
+}
+
+/* line 65, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+a#config {
+  border-right: solid white 1px;
+  margin-right: 20px;
+}
+
+/* line 70, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.sidebar {
+  padding: 0px !important;
+}
+
+/* line 77, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.conteudo {
+  height: 600px !important;
+  padding: 0;
+}
+
+/* line 84, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.panel-body {
+  padding: 3px;
+}
+
+/* line 89, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+table, th, td {
+  border: 1px solid black;
+}
+
+/* line 92, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+th, td {
+  padding: 5px;
+}
+
+/* line 96, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+#conteudo {
+  width: 1100px;
+  padding: 10px;
+  margin-left: 20px;
+  float: left;
+}
+
+/* line 105, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.itensPedido {
+  width: 250px;
+  height: 250px;
+  float: right;
+  margin: 0px;
+  padding: 40px;
+  background-image: url("papelazul.png");
+  background-repeat: no-repeat;
+}
+
+/* line 116, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.itensPedido2 {
+  width: 250px;
+  height: 250px;
+  float: right;
+  margin: 0px;
+  padding: 40px;
+  background-image: url("papelvermelho.png");
+  background-repeat: no-repeat;
+}
+
+/* line 127, /vagrant/PD_OPE/app/assets/stylesheets/home01.scss */
+.iconsPedido {
+  float: right;
+  margin-top: 70px;
+}

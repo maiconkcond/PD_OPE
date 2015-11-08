@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:400,600,800,700);
+/* line 6, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+body {
+  overflow-x: hidden;
+  background-color: #ede7f6 !important;
+}
+
+/* line 11, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* line 16, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.modal-header {
+  background-color: #3f51b5;
+  -webkit-border-top-left-radius: 15px;
+  -webkit-border-top-right-radius: 15px;
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* line 26, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.modal-title {
+  color: white;
+  font-family: 'Dosis', sans-serif;
+}
+
+/* line 31, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.modal-content {
+  -webkit-border-top-left-radius: 15px;
+  -webkit-border-top-right-radius: 15px;
+  -moz-border-radius-topleft: 15px;
+  -moz-border-radius-topright: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* line 39, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+div#conteudo {
+  padding: 0 !important;
+  margin: 10px !important;
+}
+
+/* line 45, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.consultar {
+  float: right;
+  padding: 10px;
+}
+
+/* line 50, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.novo {
+  padding: 10px;
+}
+
+/* line 54, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.cabecalho-tabela {
+  background-color: #424242;
+  color: white;
+  text-align: center;
+}
+
+/* line 60, /vagrant/PD_OPE/app/assets/stylesheets/clients.scss */
+.tit-cab {
+  font-size: 13pt;
+}

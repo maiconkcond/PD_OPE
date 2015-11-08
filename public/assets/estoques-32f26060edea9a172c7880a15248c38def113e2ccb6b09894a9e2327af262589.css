@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+/* line 6, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.panel-default {
+  border: 1px solid #424242 !important;
+  background-color: #F0F0F0;
+  border-radius: 40px 40px 40px 40px !important;
+  -moz-border-radius: 40px 40px 40px 40px !important;
+  -webkit-border-radius: 40px 40px 40px 40px !important;
+}
+
+/* line 14, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.novo {
+  text-align: center !important;
+}
+
+/* line 18, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+body {
+  background-color: #F0F0F0 !important;
+}
+
+/* line 21, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.tit-form {
+  color: #424242;
+  text-transform: bold;
+  text-align: center;
+}
+
+/* line 27, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.breadcrumb {
+  background-color: #F0F0F0;
+}
+
+/* line 31, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.nav-menu ul {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0px;
+  background-color: #750709;
+  list-style: none;
+}
+
+/* line 40, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.nav-menu ul li {
+  display: inline;
+}
+
+/* line 43, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.nav-menu ul li a {
+  padding: 2px 10px;
+  display: inline-block;
+  font-size: 15px;
+  /* visual do link */
+  background-color: #750709;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-bottom: 3px solid #750709;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* line 56, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+.nav-menu ul li a:hover {
+  background-color: #750709;
+  color: #FFCD00;
+  border-bottom: 3px solid #FFCD00;
+}
+
+/* line 61, /vagrant/PD_OPE/app/assets/stylesheets/estoques.scss */
+span {
+  color: white;
+}
