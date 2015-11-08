@@ -23,6 +23,10 @@ Things you may want to cover:
 
 * ...
 
+* IDEIAS:
+
+	Criar modulo onde os clientes consegue aconpanhar o status dos pedidos de casa
+	Criar uma forma de organizar entregas via proximidade uma da outra usando google maps 
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
