@@ -1,6 +1,7 @@
 class ItensPedidosController < ApplicationController
   before_action :set_itens_pedido, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /itens_pedidos
   # GET /itens_pedidos.json
   def index

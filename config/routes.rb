@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'control_users/index'
+
   resources :unid_meds
   resources :insumos
   resources :itens_pedidos

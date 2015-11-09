@@ -1,6 +1,7 @@
 class GrupoEstoquesController < ApplicationController
   before_action :set_grupo_estoque, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /grupo_estoques
   # GET /grupo_estoques.json
   def index

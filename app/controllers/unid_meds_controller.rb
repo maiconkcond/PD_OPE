@@ -1,6 +1,7 @@
 class UnidMedsController < ApplicationController
   before_action :set_unid_med, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /unid_meds
   # GET /unid_meds.json
   def index

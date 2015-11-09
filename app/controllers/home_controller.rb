@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
+
+ 
+
   def index
   	@pedido = Pedido.all
   	@pedido2 = Pedido.new
@@ -29,8 +32,6 @@ def new
 def json
    
    @estoque = Estoque.where("grupo_estoque_id="+params[:id])
-
- 
    render json: @estoque
   
    
@@ -39,7 +40,6 @@ def json
  def jsonValor
    
    @estoque = Estoque.find(params[:id])
- 
    render json: @estoque
 
  end

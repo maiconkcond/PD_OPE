@@ -4,7 +4,11 @@ gem 'will_paginate', '~> 3.0.6'
 
 gem 'ransack'
 
+# Utilizado para autenticação de Usuários
 gem 'devise'
+
+# Utilizado para autorização de Usuário
+gem "pundit"
 
 gem 'devise-bootstrap-views'
 

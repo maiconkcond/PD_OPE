@@ -1,6 +1,7 @@
 class FabricantesController < ApplicationController
   before_action :set_fabricante, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /fabricantes
   # GET /fabricantes.json
   def index

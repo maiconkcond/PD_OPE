@@ -12,9 +12,6 @@ function escondeDiv() {
 
 </script>
 
-
-
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,55 +50,16 @@ function escondeDiv() {
 
 <div class="row"><!--ROW PRINCIPAL -->
   <div class="col-md-2 sidebar">
-    <div id='cssmenu' class="col-md-12">
-      <ul>
-        <li class='active has-sub'><a href='#'><span>Caixa</span></a>
-          <ul>
-            <li><a href='#'  target="_blank"><span>Abrir caixa</span></a></li>
-            <li><a href='#'  target="_blank"><span>Caixa</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Pedido</span></a>
-          <ul>
-            <li><a href='#'  target="_blank"><span>Pedidos diario</span></a></li>
-            <li><a href='#'  target="_blank"><span>Consultar</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Compra</span></a>
-          <ul>
-            <li><a href='#'  target="_blank"><span >Compra</span></a></li>
-            <li><a href='#'  target="_blank"><span>Pedido de compra</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Cadastros</span></a>
-          <ul>
-            <li ><a href='http://localhost:3000/clients/new'  target="_blank"><span>Cliente</span></a></li>
-            <li ><a href='http://localhost:3000/fabricantes/new'  target="_blank"><span>Fabricante</span></a></li>
-            <li ><a href='http://localhost:3000/fornecedors/new'  target="_blank"><span>Fornecedor</span></a></li>
-            <li><a href='http://localhost:3000//funcionarios/new'   target="_blank"><span>Funcionario</span></a></li>
-            <li ><a href='http://localhost:3000/clients/new'  target="_blank"><span>Usuário</span></a></li>
-            <li ><a href='http://localhost:3000/insumos/new'  target="_blank"><span>Insumo</span></a></li>
-            <li ><a href='http://localhost:3000/grupo_estoques/new'  target="_blank"><span>Grupo de estoque</span></a></li>
-            <li ><a href='http://localhost:3000/unid_meds/new'  target="_blank"><span>Unidade de medida</span></a></li>
-            <li ><a href='http://localhost:3000/'  target="_blank"><span>Formas de Pagamento</span></a></li> 
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Estoque</span></a>
-          <ul>
-            <li ><a href='http://localhost:3000/estoques/new' target="_blank"><span>Novo produto</span></a></li>
-            <li ><a href='#'  target="_blank"><span>Ajustar estoque</span></a></li>
-            <li ><a href='http://localhost:3000/estoques' target="_blank"><span>Consultar</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Financeiro</span></a>
-          <ul>
-            <li><a href='#'  target="_blank"><span>Contas a pagar</span></a></li>
-            <li><a href='#'  target="_blank"><span>Contas a receber</span></a></li>
-          </ul>
-        </li>
-        <li class='last'><a href='#'><span></span></li>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <% case current_user.role %>
+        <% when 'admin' %>
+          <%= render partial: "menu_admin" %>
+        <% when 'normal_user' %>
+          <%= render partial: "menu_usernormal" %>
+      <% end %>
+    <% else %>
+      
+    <% end %>
   </div>  
   <div class="col-md-10 fundo-ped"> 
     <button type="button" class="btn btn-primary btn-lg inserir_pedido" data-toggle="modal" data-target="#myModal">
@@ -114,6 +72,7 @@ function escondeDiv() {
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1" ng-controller="atualiza">
+
           {{message}}
           <% @pedido.each do |pedido| %>
           <% if pedido.status == 1 %>

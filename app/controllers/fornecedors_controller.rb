@@ -1,6 +1,6 @@
 class FornecedorsController < ApplicationController
   before_action :set_fornecedor, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /fornecedors
   # GET /fornecedors.json
   def index
