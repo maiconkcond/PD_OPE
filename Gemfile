@@ -4,6 +4,8 @@ gem 'will_paginate', '~> 3.0.6'
 
 gem 'ransack'
 
+gem 'brazilian-rails'
+
 # Utilizado para autenticação de Usuários
 gem 'devise'
 

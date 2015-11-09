@@ -96,55 +96,16 @@ $(document).ready(function()
 
 <div class="row"><!--ROW PRINCIPAL -->
   <div class="col-md-2 sidebar">
-    <div id='cssmenu' class="col-md-12">
-      <ul>
-        <li class='active has-sub'><a href='#'><span>Caixa</span></a>
-          <ul>
-            <li><a href='#'><span>Abrir caixa</span></a></li>
-            <li><a href='#'><span>Caixa</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Pedido</span></a>
-          <ul>
-            <li><a href='#'><span>Pedidos diario</span></a></li>
-            <li><a href='#'><span>Consultar</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Compra</span></a>
-          <ul>
-            <li><a href='#'><span>Compra</span></a></li>
-            <li><a href='#'><span>Pedido de compra</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Cadastros</span></a>
-          <ul>
-            <li ><a href='#'><span>Cliente</span></a></li>
-            <li ><a href='#'><span>Fabricante</span></a></li>
-            <li ><a href='#'><span>Fornecedor</span></a></li>
-            <li><a href='#'><span>Funcionario</span></a></li>
-            <li ><a href='#'><span>Usuário</span></a></li>
-            <li ><a href='#'><span>Insumo</span></a></li>
-            <li ><a href='#'><span>Grupo de estoque</span></a></li>
-            <li ><a href='#'><span>Unidade de medida</span></a></li>
-            <li ><a href='#'><span>Formas de Pagamento</span></a></li> 
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Estoque</span></a>
-          <ul>
-            <li ><a href='#'><span>Novo produto</span></a></li>
-            <li ><a href='#'><span>Ajustar estoque</span></a></li>
-            <li ><a href='#'><span>Consultar</span></a></li>
-          </ul>
-        </li>
-        <li class='active has-sub'><a href='#'><span>Financeiro</span></a>
-          <ul>
-            <li><a href='#'><span>Contas a pagar</span></a></li>
-            <li><a href='#'><span>Contas a receber</span></a></li>
-          </ul>
-        </li>
-        <li class='last'><a href='#'><span></span></li>
-      </ul>
-    </div>
+<% if user_signed_in? %>
+      <% case current_user.role %>
+        <% when 'admin' %>
+          <%= render partial: "menu_admin" %>
+        <% when 'normal_user' %>
+          <%= render partial: "menu_usernormal" %>
+      <% end %>
+    <% else %>
+      
+    <% end %>
   </div>  
   <div class="col-md-10 fundo-ped"> 
     <button type="button" class="btn btn-primary btn-lg inserir_pedido" data-toggle="modal" data-target="#myModal">
