@@ -8,6 +8,7 @@ class FabricantesController < ApplicationController
     @fabricantes = Fabricante.all
     @q = Fabricante.ransack(params[:q])
     @fabricantes = @q.result
+    authorize @fabricantes
   end
 
   # GET /fabricantes/1
@@ -22,6 +23,7 @@ class FabricantesController < ApplicationController
     @q = Fabricante.ransack(params[:q])
     @fabricantes = @q.result
     @fabricante = Fabricante.new
+    authorize @fabricante
     #@fabricantes = Fabricante.all
   end
 

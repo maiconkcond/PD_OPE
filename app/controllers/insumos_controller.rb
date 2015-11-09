@@ -6,6 +6,7 @@ class InsumosController < ApplicationController
   # GET /insumos.json
   def index
     @insumos = Insumo.all
+    authorize @insumos
   end
 
   # GET /insumos/1
@@ -16,6 +17,7 @@ class InsumosController < ApplicationController
   # GET /insumos/new
   def new
     @insumo = Insumo.new
+    authorize @insumo
   end
 
   # GET /insumos/1/edit

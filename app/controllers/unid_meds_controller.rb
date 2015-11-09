@@ -6,6 +6,7 @@ class UnidMedsController < ApplicationController
   # GET /unid_meds.json
   def index
     @unid_meds = UnidMed.all
+    authorize @unid_meds
   end
 
   # GET /unid_meds/1
@@ -16,6 +17,7 @@ class UnidMedsController < ApplicationController
   # GET /unid_meds/new
   def new
     @unid_med = UnidMed.new
+    authorize @unid_med
   end
 
   # GET /unid_meds/1/edit

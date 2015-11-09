@@ -5,6 +5,7 @@ class EstoquesController < ApplicationController
   # GET /estoques.json
   def index
     @estoques = Estoque.all
+    authorize @estoques
   end
 
   # GET /estoques/1
@@ -15,6 +16,7 @@ class EstoquesController < ApplicationController
   # GET /estoques/new
   def new
     @estoque = Estoque.new
+    authorize @estoque
   end
 
   # GET /estoques/1/edit

@@ -1,5 +1,4 @@
-class UserPolicy < ApplicationPolicy
-	
+class GrupoEstoquePolicy < ApplicationPolicy
 	def index?
 		user.admin?
 	end
@@ -7,6 +6,7 @@ class UserPolicy < ApplicationPolicy
 	def new?
 		user.admin?
 	end
+
 	class Scope < Scope
 		def resolve
 			scope

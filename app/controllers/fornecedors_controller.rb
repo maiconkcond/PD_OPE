@@ -7,6 +7,7 @@ class FornecedorsController < ApplicationController
     @fornecedors = Fornecedor.all
     @q = Fornecedor.ransack(params[:q])
     @fornecedor = @q.result
+    authorize @fornecedor
   end
 
   # GET /fornecedors/1
@@ -22,6 +23,7 @@ class FornecedorsController < ApplicationController
     @q = Fornecedor.ransack(params[:q])
     @fornecedors = @q.result
     @fornecedor = Fornecedor.new
+    authorize @fornecedor
     #@fornecedors = Fornecedor.all
   end
 

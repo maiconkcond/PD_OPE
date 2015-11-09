@@ -6,6 +6,7 @@ class GrupoEstoquesController < ApplicationController
   # GET /grupo_estoques.json
   def index
     @grupo_estoques = GrupoEstoque.all
+    authorize @grupo_estoques
   end
 
   # GET /grupo_estoques/1
@@ -20,6 +21,7 @@ class GrupoEstoquesController < ApplicationController
     @q = GrupoEstoque.ransack(params[:q])
     @grupo_estoques = @q.result
     @grupo_estoque = GrupoEstoque.new
+    authorize @grupo_estoque
   end
 
   # GET /grupo_estoques/1/edit

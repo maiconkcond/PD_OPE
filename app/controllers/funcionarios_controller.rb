@@ -6,6 +6,7 @@ class FuncionariosController < ApplicationController
   # GET /funcionarios.json
   def index
     @func = Funcionario.all
+    authorize @func
   end
 
   # GET /funcionarios/1
@@ -21,6 +22,7 @@ class FuncionariosController < ApplicationController
     @funcionarios = @q.result
 
     @funcionario = Funcionario.new
+    authorize @funcionario
     # @funcionarios = Funcionario.all
   end
 
