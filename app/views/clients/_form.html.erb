@@ -36,8 +36,6 @@
 <ol class="breadcrumb">
   <li><a href="http://localhost:3000">Inicio</a></li>
   <li class="active">Lista de Clientes</li>
-    <% address = BuscaEndereco.cep(22640100) %>
-  <h1>2<%= address %></h1>
 </ol>
 <div class="row-fluid">
 <div class="panel panel-default col-md-12">
@@ -160,7 +158,7 @@
   <div class="field form-horizontal">
     <%= f.label :endereco, class: "sr-only" %>
     <div class="input-group col-md-12">
-      <%= f.text_field :endereco, class: "form-control", id: "exampleInputAmount", placeholder: "Endereço"  %>
+      <%= f.text_field :endereco, class: "form-control", id: "endereco", placeholder: "Endereço"  %>
      </div>
   </div>
 
@@ -175,7 +173,7 @@
     <div class="field form-horizontal col-md-8">
       <%= f.label :bairro, class: "sr-only" %>
       <div class="input-group col-md-12">
-        <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro"  %>
+        <%= f.text_field :bairro, class: "form-control", id: "bairro", placeholder: "Bairro"  %>
       </div>
     </div>
   </div>
@@ -184,14 +182,14 @@
     <div class="field form-horizontal col-md-8">
       <%= f.label :cidade, class: "sr-only" %>
       <div class="input-group col-md-12">
-        <%= f.text_field :cidade, class: "form-control", id: "exampleInputPassword3", placeholder: "Cidade"  %>
+        <%= f.text_field :cidade, class: "form-control", id: "cidade", placeholder: "Cidade", name: "cidade"  %>
        </div>
     </div>
 
     <div class="field form-horizontal col-md-4">
       <%= f.label :cep, class: "sr-only" %>
       <div class="input-group col-md-12">
-          <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP"  %>
+          <%= f.text_field :cep, class: "form-control", id: "cep", placeholder: "CEP", name: "cep", onblur: "pesquisacep(this.value);"  %>        
        </div>
     </div>  
   </div>
@@ -241,6 +239,9 @@
         <%= f.text_area :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "Observação"  %>
      </div>
   </div>
+
+  <% @nome = params[:nome] %>
+  <h1><%= @nome %></h1>
    
  <!--final do formulario clientes-->
       <div class="modal-footer">
@@ -259,4 +260,6 @@
  </div>
 </div>
 <!--final do modal 2-->
+
+
 
