@@ -3,8 +3,7 @@ var meuApp= angular.module('meuApp', []);
 meuApp.controller('principal', function($scope){
 
 
-	$scope.estoqueProd=[
-	];
+	$scope.estoqueProd=[];
 
 
 
