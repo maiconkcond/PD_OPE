@@ -20,8 +20,8 @@ default: &default
   pool: 5
   username: root
   password: 
-  #socket: /opt/lampp/var/mysql/mysql.sock
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /opt/lampp/var/mysql/mysql.sock
+  #socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -44,7 +44,7 @@ test:
 # production deployment.
 #
 # On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
+# available as an environment variable. For example:cd
 #
 #   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
 #

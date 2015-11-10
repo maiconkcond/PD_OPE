@@ -3,10 +3,7 @@ var meuApp= angular.module('meuApp', []);
 meuApp.controller('principal', function($scope){
 
 
-	$scope.estoqueProd=[
-     {nome:"agua", valor:30, qtd:2},
-     {nome:"suco", valor:20, qtd:1},
-	];
+	$scope.estoqueProd=[];
 
 
 
@@ -18,27 +15,14 @@ meuApp.controller('principal', function($scope){
     });
 	   
     $scope.addProd= function(){
-        
-      
-          $.ajax({ 
-           type: "GET", 
-           url: "http://localhost:3000/home/jsonValor/"+$scope.estoque,
-           dataType: "json", 
-           success: function(data){ 
-               
-                $scope.nome=data.nome;
-                $scope.valor=data.valor_venda;
-              	$scope.estoqueProd.push({nome: $scope.nome, valor: $scope.valor, qtd: $scope.qtd});
-		    	$scope.estoque="";
-		    	$scope.nome="";
-		    	$scope.valor="";
-		    	$scope.qtd="";
-		    
-            }
-
-          });
-
-    
+        var nome = $("#estoque option:selected").text();
+        var valor = $("#valor").val();
+  
+    $scope.estoqueProd.push({nome: nome, valor: valor, qtd: $scope.qtd});
+    $scope.estoque="";
+          $scope.nome="";
+          $scope.valor="";
+          $scope.qtd="";
     }
 });
 
