@@ -3,7 +3,7 @@ var meuApp= angular.module('meuApp', []);
 meuApp.controller('principal', function($scope){
 
 
-	$scope.estoqueProd=[];
+	  $scope.estoqueProd=[];
 
 
 
@@ -14,6 +14,13 @@ meuApp.controller('principal', function($scope){
         });
     });
 	   
+
+    $scope.excluir= function(index){
+       $scope.estoqueProd.splice(index, 1);
+      
+    }
+
+
     $scope.addProd= function(){
         var nome = $("#estoque option:selected").text();
         var valor = $("#valor").val();

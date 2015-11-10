@@ -314,18 +314,22 @@ $(document).ready(function()
                           <td class="warning">Descrição</td>
                           <td class="warning">Qtd</td>
                           <td class="warning">Valor Unit.</td>
-                          <td class="warning">Valor Total</td>
+                          <td class="warning">Sub Total</td>
+                          <td class="warning">test</td>
                         </tr>
                       </thead>
                       <tbody class="table-striped">
-                      
-                       <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
-                          <td>{{estoque.nome}}</td>
-                          <td>{{estoque.qtd}}</td>
-                          <td>{{estoque.valor}}</td>
-                          <td>{{estoque.valor * estoque.qtd}}</td> 
-                      
-                        </tr>
+
+                  
+                         <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
+                            <td>{{estoque.nome}}</td>
+                            <td>{{estoque.qtd}}</td>
+                            <td>{{estoque.valor}}</td>
+                            <td>{{estoque.valor * estoque.qtd}}</td> 
+                            <td> <button type="button"  ng-click="excluir($index)">Excluir</button></td> 
+                            
+                          </tr>
+                       
                       </tbody>
                     </table>
             </div>
@@ -341,8 +345,10 @@ $(document).ready(function()
                       <!--final do formulario clientes-->
                       <div class="modal-footer">
                         <div class="actions">
-                            
-                           <button type="button" class="btn btn-primary btn-lg ">Finalizar / Salvar</button>
+                           <% @clients.each do |client| %>
+
+                          <a href="cadastra/<%=client.id%>/"> <button type="button" class="btn btn-primary btn-lg ">Finalizar / Salvar</button></a>
+                          <% end %>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
        
       </div>

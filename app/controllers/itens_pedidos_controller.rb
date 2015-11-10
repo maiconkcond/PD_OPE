@@ -29,18 +29,7 @@ class ItensPedidosController < ApplicationController
   def edit
   end
 
-  def cadastra
-    @itens_pedido = ItensPedido.new
-    @pedido = Pedido.new
-    @pedido.status=1
-    @pedido.client_id=params[:id]
-    @pedido.save
-    
-
-
-
-
-  end
+  
 
   # POST /itens_pedidos
   # POST /itens_pedidos.json
