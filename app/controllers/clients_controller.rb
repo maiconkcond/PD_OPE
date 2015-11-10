@@ -5,9 +5,9 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @q = Client.ransack(params[:q])
-    @clients = @q.result
-    #@clients = Client.all
+    #@q = Client.ransack(params[:q])
+    #@clients = @q.result
+    @clients = Client.all
   end
 
   # GET /clients/1
@@ -22,7 +22,7 @@ class ClientsController < ApplicationController
     @q = Client.ransack(params[:q])
     @clients = @q.result
     @client = Client.new
-    #@clients = Client.all
+    @clients = Client.all
   end
 
   # GET /clients/1/edit
@@ -35,15 +35,17 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
-    @client = Client.new(client_params)
+    @clients = Client.new(client_params)
 
     respond_to do |format|
-      if @client.save
+      if @clients.save
         format.html { redirect_to action: "new", notice: 'Criado com sucesso!.' }
-        format.json { render :show, status: :created, location: @client }
+        format.json { render :show, status: :created, location: @clients }
       else
+        #@clients = User.all #this is the important line
+        #render :new
         format.html { render :new }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
+        format.json { render json: @clients.errors, status: :unprocessable_entity }
       end
     end
   end
