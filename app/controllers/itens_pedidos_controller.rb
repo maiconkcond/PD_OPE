@@ -36,6 +36,10 @@ class ItensPedidosController < ApplicationController
     @pedido.client_id=params[:id]
     @pedido.save
     
+
+
+
+
   end
 
   # POST /itens_pedidos

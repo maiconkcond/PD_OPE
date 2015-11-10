@@ -3,8 +3,6 @@ $(document).ready(function()
 {
 
     $("#myModal").modal("show");
-
-    
     $('#gestoque_grupo_estoque_id').on('change', function(){
       //pega o valor do select do grupo de estoque
          var id = $('select#gestoque_grupo_estoque_id :selected').val();
@@ -18,13 +16,12 @@ $(document).ready(function()
            success: function(data){ 
                for(i=0; i <= data.length;i++){
 
-                            $('#estoque').append("<option value="+data[i].id+">"+data[i].nome+"</option>");
+                            $('#estoque').append("<option value="+data[i].id+" >"+data[i].nome+"</option>");
                             
               }
             }
 
           });
-
     });
 
     
@@ -45,15 +42,8 @@ $(document).ready(function()
               
             }
 
-          });
-     
-          
+          });        
     })
-
-
-   
-    
-
 });
 </script>
 
@@ -203,7 +193,7 @@ $(document).ready(function()
             </div>
         <% end %>
 
-        <%= form_for(@pedido2) do |p| %>
+        
           <%= form_for(@client2, :html => { :class => 'form-inline' })  do |f| %>
             <% @clients.each do |client| %>
            
@@ -225,9 +215,9 @@ $(document).ready(function()
 
           <div class="row">
           <div class="field form-horizontal col-md-2">
-            <%= p.label :client_id, class: "sr-only" %>
+            <%= f.label :client_id, class: "sr-only" %>
             <div class="input-group col-md-12">
-              <%= p.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID", value:client.id, disabled:true%>
+              <%= f.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID", value:client.id, disabled:true%>
             </div>
           </div>
           <div class="field form-horizontal col-md-10">
@@ -276,9 +266,10 @@ $(document).ready(function()
               </div>
             </div>
           </div>   
+
           <a href="/cadastra/<%= client.id %>">Criar pedido</a>
-          <% end %><!--final client each-->
-       <% end %>
+          <% end %><!-- final client each -->
+       <% end %><!-- final form client2 -->
 
         <h4>Informações dos produtos</h4>
          
@@ -299,12 +290,12 @@ $(document).ready(function()
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value=''/> 
+                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value=""/> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd"/> 
+                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" value="1"/> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-1">
@@ -350,10 +341,10 @@ $(document).ready(function()
                       <!--final do formulario clientes-->
                       <div class="modal-footer">
                         <div class="actions">
-                          <%= p.submit  "Finalizar / Salvar", class: "btn btn-primary btn-lg "%>
+                            
+                           <button type="button" class="btn btn-primary btn-lg ">Finalizar / Salvar</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
        
-        <% end %> 
       </div>
     </div>
   </div>
