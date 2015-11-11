@@ -43,10 +43,19 @@
 
 <!--<p id="notice"><%= notice %></p>-->
 <!--<h1>Lista de clientes</h1>-->
+<<<<<<< HEAD
 <h1 class="titulo-pagina">Clientes</h1>
 <hr size="10" width="100%">
 <div class="col-md-12">
 <!--<div class="panel panel-default col-md-12">-->
+=======
+<ol class="breadcrumb">
+  <li><a href="http://localhost:3000">Inicio</a></li>
+  <li class="active">Lista de Clientes</li>
+</ol>
+<div class="row-fluid">
+<div class="panel panel-default col-md-12">
+>>>>>>> 916877f7d75d8bf3d60c7ac5857aefbaa20e3aab
   <!-- Default panel contents -->
   <!--<div class="panel-heading col-md-12">-->
     <div class="col-md-6 novo">
@@ -180,7 +189,11 @@
   <div class="field form-horizontal">
     <%= f.label :endereco, class: "sr-only" %>
     <div class="input-group col-md-12">
+<<<<<<< HEAD
       <%= f.text_field :endereco, class: "form-control", id: "endereco", placeholder: "Endereço", style: "text-transform:uppercase"  %>
+=======
+      <%= f.text_field :endereco, class: "form-control", id: "endereco", placeholder: "Endereço"  %>
+>>>>>>> 916877f7d75d8bf3d60c7ac5857aefbaa20e3aab
      </div>
   </div>
 
@@ -195,12 +208,34 @@
     <div class="field form-horizontal col-md-8">
       <%= f.label :bairro, class: "sr-only" %>
       <div class="input-group col-md-12">
+<<<<<<< HEAD
         <%= f.text_field :bairro, class: "form-control", id: "bairro", placeholder: "Bairro", style: "text-transform:uppercase"  %>
+=======
+        <%= f.text_field :bairro, class: "form-control", id: "bairro", placeholder: "Bairro"  %>
+>>>>>>> 916877f7d75d8bf3d60c7ac5857aefbaa20e3aab
       </div>
     </div>
   </div>
    
+<<<<<<< HEAD
  
+=======
+  <div class="row">  
+    <div class="field form-horizontal col-md-8">
+      <%= f.label :cidade, class: "sr-only" %>
+      <div class="input-group col-md-12">
+        <%= f.text_field :cidade, class: "form-control", id: "cidade", placeholder: "Cidade", name: "cidade"  %>
+       </div>
+    </div>
+
+    <div class="field form-horizontal col-md-4">
+      <%= f.label :cep, class: "sr-only" %>
+      <div class="input-group col-md-12">
+          <%= f.text_field :cep, class: "form-control", id: "cep", placeholder: "CEP", name: "cep", onblur: "pesquisacep(this.value);"  %>        
+       </div>
+    </div>  
+  </div>
+>>>>>>> 916877f7d75d8bf3d60c7ac5857aefbaa20e3aab
   
   <div class="row">
     <div class="field form-horizontal col-md-6">
