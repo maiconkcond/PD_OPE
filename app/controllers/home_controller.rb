@@ -36,20 +36,11 @@ def new
 
  def create
 
+    uri = URI('http://localhost:3000/home/new')
+    res = Net::HTTP.post_form(uri, 'q' => 'ruby', 'max' => '50')
+    puts res.body
 
-    @itens_pedido = ItensPedido.new(itens_pedido_params)
-    idped = Pedido.all.last
-    @itens_pedido.pedido_id=idped
-
-    respond_to do |format|
-      if @itens_pedido.save
-        format.html { redirect_to "http://localhost:3000" }
-        
-      else
-        format.html { render :new }
-        format.json { render json: @itens_pedido.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
 
@@ -68,6 +59,12 @@ def json
    @estoque = Estoque.find(params[:id])
    render json: @estoque
 
+ end
+ 
+ 
+ def salva
+   
+   render json: $prod
  end
  
 

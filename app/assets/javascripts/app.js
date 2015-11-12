@@ -1,6 +1,19 @@
-var meuApp= angular.module('meuApp', []);
+var meuApp= angular.module('meuApp', ["ngResource"]);
 
-meuApp.controller('principal', function($scope){
+meuApp.factory( "Prod" , function ($resource){ 
+     return $resource("" , 
+         null, {
+          enviar: { method: "post", url: "", headers: {content-type: "application/x-www-form-urlencoder"}}
+         }
+         
+     ) ; 
+ } ) ; 
+
+
+meuApp.controller('principal', function($scope, $http,  $location, $resource, Prod){
+
+   
+
 
 
 	  $scope.estoqueProd=[];
@@ -19,18 +32,33 @@ meuApp.controller('principal', function($scope){
        $scope.estoqueProd.splice(index, 1);
       
     }
+ 
+   
 
 
     $scope.addProd= function(){
         var nome = $("#estoque option:selected").text();
+        var id = $("#estoque option:selected").val();
         var valor = $("#valor").val();
   
-    $scope.estoqueProd.push({nome: nome, valor: valor, qtd: $scope.qtd});
-    $scope.estoque="";
+    $scope.estoqueProd.push({id: id, nome: nome, valor: valor, qtd: $scope.qtd});
+          $scope.estoque="";
           $scope.nome="";
           $scope.valor="";
           $scope.qtd="";
     }
+
+   
+  
+
+   $scope.salva= function(){
+       alert("funcionou");
+       $scope.enviar= function(){
+           var enviar= $.params({"enviado": JSON.springify($scope.estoqueProd=[])})
+           Prod.enviar(enviar);
+    }
+  }
+
 });
 
 

@@ -15,3 +15,5 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require angular-resource.min.js
+//= require angular.min.js

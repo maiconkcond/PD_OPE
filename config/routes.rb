@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get 'listar/:id' => 'itens_pedidos#litar_item_pedido'
   get '/home/cadastra/:id/:id_est' => 'home#cadastra'
+  post '/home/salva' => 'home#salva'
   get 'status/:id' => 'pedidos#status'
   get '/home/json/:id' => 'home#json'
   get '/home/jsonValor/:id' => 'home#jsonValor'
