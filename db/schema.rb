@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111031612) do
+ActiveRecord::Schema.define(version: 20151111235118) do
+
+  create_table "caixas", force: :cascade do |t|
+    t.datetime "data"
+    t.decimal  "valor_inicial", precision: 10
+    t.decimal  "soma_geral",    precision: 10
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string   "nome",        limit: 255
