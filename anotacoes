@@ -1,0 +1,28 @@
+##### DOCUMENTO DESTINADO PARA ANOTAÇÕES DO PROJETO ######
+
+Links:
+	-> Modelagem Banco: http://ondras.zarovi.cz/sql/demo/
+
+Pendências:
+
+módulo de clientes:
+	ACERTAR O CONSULTA, NAO ESTA RETORNANDO O RESULTADO
+	VERIFICAR O PORQUE NAO ESTA MOSTRANDO A CIDADE NO CAMPO DA TABELA
+	REALIZAR VALIDAÇÕES
+	ACERTAR BOTAO EDITAR 
+	ACERTAR BOTAO VISUALIZAR
+
+Acertar banco de dados:
+	Acrescentar campos nas tabelas:
+		-> PEDIDOS
+		-> ESTOQUE (remover campos que nao serao mais utilizados)]
+		->
+	criar Scafold:
+		-> Itens_products
+		-> Itens_compra
+		-> Compra
+		-> Caixa
+		-> Itens_caixa
+		-> Forma de pagamento
+		-> Contas receber
+		-> Contas a pagar

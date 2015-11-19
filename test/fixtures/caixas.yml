@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2015-11-11 23:51:18
+  valor_inicial: 9.99
+  soma_geral: 9.99
+
+two:
+  data: 2015-11-11 23:51:18
+  valor_inicial: 9.99
+  soma_geral: 9.99

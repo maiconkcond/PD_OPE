@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :caixas
   get 'control_users/index'
 
   resources :unid_meds
@@ -22,7 +23,9 @@ Rails.application.routes.draw do
   get 'home/index'
 
 
- 
+   namespace :api, defaults: {format: 'json'} do 
+     resources :itens_pedidos
+   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

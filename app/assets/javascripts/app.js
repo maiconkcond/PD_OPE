@@ -1,25 +1,26 @@
-var meuApp= angular.module('meuApp', ["ngResource"]);
-
-meuApp.factory( "Prod" , function ($resource){ 
-     return $resource("" , 
-         null, {
-          enviar: { method: "post", url: "", headers: {content-type: "application/x-www-form-urlencoder"}}
-         }
-         
-     ) ; 
- } ) ; 
+var meuApp= angular.module('meuApp', ['ngResource']);
 
 
-meuApp.controller('principal', function($scope, $http,  $location, $resource, Prod){
+
+
+meuApp.controller('principal', function($scope, $resource, $http){
 
    
 
+     //serviço
+    var Itens=$resource("http://localhost:3000/api/itens_pedidos/:id", { id: '@_id' });
+	  $scope.estoqueProd=Itens.query();
+    
+    //metodo que finaliza o serviço(pelo menos deveria)
+     $scope.salva= function(i){
+        alert("clicou no salva");
+        
+        Itens.save(i);
+        
 
+     }
 
-	  $scope.estoqueProd=[];
-
-
-
+    //teste
     $scope.$watchCollection('estoqueProd', function() {
         $scope.total = 0;
         angular.forEach($scope.estoqueProd, function (prod) {
@@ -27,7 +28,7 @@ meuApp.controller('principal', function($scope, $http,  $location, $resource, Pr
         });
     });
 	   
-
+    //tira do lista 
     $scope.excluir= function(index){
        $scope.estoqueProd.splice(index, 1);
       
@@ -35,12 +36,11 @@ meuApp.controller('principal', function($scope, $http,  $location, $resource, Pr
  
    
 
-
+    //adiciona na lista
     $scope.addProd= function(){
         var nome = $("#estoque option:selected").text();
         var id = $("#estoque option:selected").val();
         var valor = $("#valor").val();
-  
     $scope.estoqueProd.push({id: id, nome: nome, valor: valor, qtd: $scope.qtd});
           $scope.estoque="";
           $scope.nome="";
@@ -49,19 +49,10 @@ meuApp.controller('principal', function($scope, $http,  $location, $resource, Pr
     }
 
    
-  
-
-   $scope.salva= function(){
-       alert("funcionou");
-       $scope.enviar= function(){
-           var enviar= $.params({"enviado": JSON.springify($scope.estoqueProd=[])})
-           Prod.enviar(enviar);
-    }
-  }
 
 });
 
-
+// novo controle de teste para refresh na página
 meuApp.controller('atualiza', function($scope, $interval){
    var c=0;
     $interval(function(){
@@ -69,3 +60,4 @@ meuApp.controller('atualiza', function($scope, $interval){
       c++;
     },1000);
 });
+

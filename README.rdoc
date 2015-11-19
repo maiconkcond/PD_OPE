@@ -31,4 +31,6 @@ Things you may want to cover:
 	Autorização de Usuario foi utilizado gem "Pundit"
 
 Please feel free to use a different markup language if you do not plan to run
+
+http://guides.rubyonrails.org/active_record_validations.html
 <tt>rake doc:app</tt>.

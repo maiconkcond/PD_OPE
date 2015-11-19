@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108214718) do
+ActiveRecord::Schema.define(version: 20151111235118) do
+
+  create_table "caixas", force: :cascade do |t|
+    t.datetime "data"
+    t.decimal  "valor_inicial", precision: 10
+    t.decimal  "soma_geral",    precision: 10
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string   "nome",        limit: 255
@@ -79,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151108214718) do
     t.string   "nome",       limit: 255
     t.string   "tel1",       limit: 255
     t.string   "tel2",       limit: 255
+    t.string   "tel3",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -127,9 +136,12 @@ ActiveRecord::Schema.define(version: 20151108214718) do
   create_table "itens_pedidos", force: :cascade do |t|
     t.integer  "estoque_id",       limit: 4
     t.integer  "pedido_id",        limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "grupo_estoque_id", limit: 4
+    t.decimal  "valor_unit",                 precision: 10
+    t.integer  "quantidade",       limit: 4
+    t.decimal  "total",                      precision: 10
   end
 
   add_index "itens_pedidos", ["estoque_id"], name: "index_itens_pedidos_on_estoque_id", using: :btree
@@ -143,13 +155,6 @@ ActiveRecord::Schema.define(version: 20151108214718) do
   end
 
   add_index "pedidos", ["client_id"], name: "index_pedidos_on_client_id", using: :btree
-
-  create_table "produtos", force: :cascade do |t|
-    t.string   "tipo",       limit: 255
-    t.string   "nome",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
 
   create_table "unid_meds", force: :cascade do |t|
     t.string   "descricao",  limit: 255

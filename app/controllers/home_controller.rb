@@ -36,9 +36,7 @@ def new
 
  def create
 
-    uri = URI('http://localhost:3000/home/new')
-    res = Net::HTTP.post_form(uri, 'q' => 'ruby', 'max' => '50')
-    puts res.body
+    respond_with ItensPedido.create(itens_pedido_params)
 
     
   end
@@ -63,10 +61,26 @@ def json
  
  
  def salva
-   
-   render json: $prod
+   @itens_pedido = ItensPedido.new
+   #JSON.parse(params[:enviado])
+   #@itens_pedido.nome=ActiveSupport::JSON.decode(params[:nome])
+   #var pt=ActiveSupport::JSON.decode(params[:enviado])
+   #render json: $prod
  end
  
+ def show
+ # @itens_pedido = ItensPedido.all
+
+  #JSON.parse(params[:enviado])
+  #render json: pt
+   #@itens_pedido = ItensPedido.new
+   #@itens_pedido.estoque_id=3
+   #@itens_pedido.save
+ end
+
+ def create 
+  
+ end
 
 def cadastra
     @itens_pedido = ItensPedido.new

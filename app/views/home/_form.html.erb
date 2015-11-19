@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -323,7 +324,7 @@ $(document).ready(function()
 
                   
                          <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
-                            <td>{{estoque.id}}</td>
+                            <td ng-model="prod.id">{{estoque.id}}</td>
                             <td>{{estoque.nome}}</td>
                             <td>{{estoque.qtd}}</td>
                             <td>{{estoque.valor}}</td>
@@ -349,7 +350,7 @@ $(document).ready(function()
                         <div class="actions">
                         
 
-                          <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar"/>
+                          <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar" />
                           </form>
                         
                           <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
