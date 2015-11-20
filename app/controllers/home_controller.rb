@@ -16,8 +16,10 @@ class HomeController < ApplicationController
 
 def new
 	  @client2 = Client.new
+
     @q = Client.ransack(params[:q])
     @clients = @q.result
+
     @client = Client.new
 
 	  @pedido = Pedido.all
@@ -34,20 +36,9 @@ def new
 
  def create
 
+    respond_with ItensPedido.create(itens_pedido_params)
 
-    @itens_pedido = ItensPedido.new(itens_pedido_params)
-    idped = Pedido.all.last
-    @itens_pedido.pedido_id=idped
-
-    respond_to do |format|
-      if @itens_pedido.save
-        format.html { redirect_to "http://localhost:3000" }
-        
-      else
-        format.html { render :new }
-        format.json { render json: @itens_pedido.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
 
@@ -68,6 +59,53 @@ def json
 
  end
  
+ 
+ def salva
+   @itens_pedido = ItensPedido.new
+   #JSON.parse(params[:enviado])
+   #@itens_pedido.nome=ActiveSupport::JSON.decode(params[:nome])
+   #var pt=ActiveSupport::JSON.decode(params[:enviado])
+   #render json: $prod
+ end
+ 
+ def show
+ # @itens_pedido = ItensPedido.all
+
+  #JSON.parse(params[:enviado])
+  #render json: pt
+   #@itens_pedido = ItensPedido.new
+   #@itens_pedido.estoque_id=3
+   #@itens_pedido.save
+ end
+
+ def create 
+  
+ end
+
+def cadastra
+    @itens_pedido = ItensPedido.new
+    @pedido = Pedido.new
+    @pedido.status=1
+    @pedido.client_id=params[:id]
+    @pedido.save
+    
+
+    idPed = Pedido.last
+    @itens_pedido.pedido_id=idPed.id
+    @itens_pedido.estoque_id=4
+    respond_to do |format|
+      if @itens_pedido.save
+        format.html { redirect_to "http://localhost:3000" }
+        
+      else
+        format.html { render :new }
+        format.json { render json: @itens_pedido.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+
 
  def itens_pedido_params
       params.require(:itens_pedido).permit(:estoque_id, :pedido_id)

@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -282,7 +283,7 @@ $(document).ready(function()
                       </div>
                       <div class="field form-horizontal col-md-3">
 
-                      <form ng-submit="addProd()">
+                      <form ng-submit="salva()">
 
                               <select id="estoque" ng-model="estoque" name="estoque" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">
                                 <option>Produto</option>
@@ -301,8 +302,8 @@ $(document).ready(function()
                               <div class="field form-horizontal col-md-1">
                                 <div class="input-group col-md-12">
                                   
-                                    <input type="submit" value="+" class="btn btn-warning adc" id="enviar">
-                          </form>
+                                    <button ng-click="addProd()" class="btn btn-warning adc" id="enviar">+</button> 
+                          
 
                         </div>
                       </div>
@@ -311,21 +312,27 @@ $(document).ready(function()
                     <table class="table table table-bordered">
                       <thead class="danger">
                         <tr class="row-fluid">
+                        <td class="warning">Id</td>
                           <td class="warning">Descrição</td>
                           <td class="warning">Qtd</td>
                           <td class="warning">Valor Unit.</td>
-                          <td class="warning">Valor Total</td>
+                          <td class="warning">Sub Total</td>
+                          <td class="warning">test</td>
                         </tr>
                       </thead>
                       <tbody class="table-striped">
-                      
-                       <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
-                          <td>{{estoque.nome}}</td>
-                          <td>{{estoque.qtd}}</td>
-                          <td>{{estoque.valor}}</td>
-                          <td>{{estoque.valor * estoque.qtd}}</td> 
-                      
-                        </tr>
+
+                  
+                         <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
+                            <td ng-model="prod.id">{{estoque.id}}</td>
+                            <td>{{estoque.nome}}</td>
+                            <td>{{estoque.qtd}}</td>
+                            <td>{{estoque.valor}}</td>
+                            <td>{{estoque.valor * estoque.qtd}}</td> 
+                            <td> <button type="button"  ng-click="excluir($index)">Excluir</button></td> 
+                            
+                          </tr>
+                       
                       </tbody>
                     </table>
             </div>
@@ -341,8 +348,11 @@ $(document).ready(function()
                       <!--final do formulario clientes-->
                       <div class="modal-footer">
                         <div class="actions">
-                            
-                           <button type="button" class="btn btn-primary btn-lg ">Finalizar / Salvar</button>
+                        
+
+                          <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar" />
+                          </form>
+                        
                           <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
        
       </div>

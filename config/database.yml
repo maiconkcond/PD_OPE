@@ -20,8 +20,8 @@ default: &default
   pool: 5
   username: root
   password: 
-  #socket: /opt/lampp/var/mysql/mysql.sock
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /opt/lampp/var/mysql/mysql.sock
+  #socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -54,13 +54,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  #<<: *default
-  #database: PD_OPE_production
-  #username: PD_OPE
-  #password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
-  adapter: postgresql
+  <<: *default
   database: PD_OPE_production
-  username: root
-  password: root
-  encoding: utf8
-  schema_search_path: <database_schema> (default - public)
+  username: PD_OPE
+  password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
