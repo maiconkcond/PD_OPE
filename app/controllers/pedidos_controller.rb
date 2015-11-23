@@ -2,7 +2,7 @@ class PedidosController < ApplicationController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   
-
+ respond_to :html
   # GET /pedidos
   # GET /pedidos.json
   def index
