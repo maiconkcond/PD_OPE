@@ -1,7 +1,8 @@
 module Api
-
+    
     class ItensPedidosController < ApplicationController
       respond_to :json
+      
       # GET /itens_pedidos
       # GET /itens_pedidos.json
       def index
@@ -21,8 +22,8 @@ module Api
       # POST /itens_pedidos
       # POST /itens_pedidos.json
       def create
-
-        respond_with ItensPedido.create({params[:itens_pedido]})
+        
+        respond_with ItensPedido.create(itens_pedido_params)
       
       end
 
@@ -48,7 +49,7 @@ module Api
       end
 
       def itens_pedido_params
-      params.require(:itens_pedido).permit(:estoque_id)
+      params.require(:itens_pedido).permit(:estoque_id, :pedido_id, :quantidade)
     end
 
     end

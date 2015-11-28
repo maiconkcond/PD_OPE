@@ -219,13 +219,13 @@ function escondeDiv() {
           <div class="field form-horizontal col-md-2">
             <%= p.label :client_id, class: "sr-only" %>
             <div class="input-group col-md-12">
-              <%= p.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID"  %>
+              <%= p.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID", disabled:true %>
             </div>
           </div>
           <div class="field form-horizontal col-md-10">
               <%= f.label :nome, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome" %>
+                <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome" , disabled:true%>
               </div>
             </div>
         
@@ -235,14 +235,14 @@ function escondeDiv() {
             <div class="field form-horizontal col-md-9">
               <%= f.label :endereco, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço"  %>
+                <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço" , disabled:true %>
               </div>
             </div>
 
             <div class="field form-horizontal col-md-3">
               <%= f.label :complemento, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl." %>
+                <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl." , disabled:true%>
               </div>
             </div>
           </div>
@@ -251,20 +251,20 @@ function escondeDiv() {
             <div class="field form-horizontal col-md-5">
               <%= f.label :bairro, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro"  %>
+                <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro" , disabled:true %>
               </div>
             </div>
 
             <div class="field form-horizontal col-md-2">
               <%= f.label :cep, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP" %>
+                <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP" , disabled:true %>
               </div>
             </div>
             <div class="field form-horizontal col-md-5">
               <%= f.label :obs, class: "sr-only" %>
               <div class="input-group col-md-12">
-                <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "Ponto de Referência" %>
+                <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "Ponto de Referência", disabled:true %>
               </div>
             </div>
           </div>   
@@ -285,7 +285,7 @@ function escondeDiv() {
           </div>
           <div class="field form-horizontal col-md-2">
             <div class="input-group col-md-12">
-              <input id="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd"/> 
+              <input id="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" disabled /> 
             </div>
           </div>
           <div class="field form-horizontal col-md-1">

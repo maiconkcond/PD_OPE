@@ -218,7 +218,8 @@ $(document).ready(function()
           <div class="field form-horizontal col-md-2">
             <%= f.label :client_id, class: "sr-only" %>
             <div class="input-group col-md-12">
-              <%= f.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID", value:client.id, disabled:true%>
+              
+              <input id="client_id" name="client_id" class="form-control col-sm-12" placeholder="ID" ng-model"cli_id" value="<%=client.id%>" disabled>
             </div>
           </div>
           <div class="field form-horizontal col-md-10">
@@ -301,8 +302,9 @@ $(document).ready(function()
                               </div>
                               <div class="field form-horizontal col-md-1">
                                 <div class="input-group col-md-12">
-                                  
-                                    <button ng-click="addProd()" class="btn btn-warning adc" id="enviar">+</button> 
+                       
+                                 <!--   <button ng-click="addProd()" class="btn btn-warning adc" id="enviar">+</button> -->
+                                 <a href="#" ng-click="addProd()" class="btn btn-warning adc" >+</a>
                           
 
                         </div>
@@ -351,9 +353,12 @@ $(document).ready(function()
                         
 
                           <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar" />
-                          </form>
+                         </form>
                         
                           <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+
+                         
+
        
       </div>
     </div>
