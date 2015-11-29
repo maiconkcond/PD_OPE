@@ -5,6 +5,7 @@ class UnidMedsController < ApplicationController
   def index
     @q = UnidMed.ransack(params[:q])
     @unid_meds = @q.result
+    authorize @unid_meds
     
   end
 
