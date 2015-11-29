@@ -1,3 +1,19 @@
-// Place all the styles related to the unid_meds controller here.
+// Place all the styles related to the Payments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.botoes-acao{
+	text-align: center !important;
+}
+#titulo-deletar{
+	color: white !important;
+}
+
+.actions{
+	text-align: right !important;
+}
+
+.buttonCadastros{
+	background-color: #167F92;
+	color: white !important;
+}

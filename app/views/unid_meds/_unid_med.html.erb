@@ -1,0 +1,8 @@
+<tr id="unid_med_<%= unid_med.id %>">
+  <td class="botoes-acao"><%= unid_med.descricao %></td>
+  <td class="botoes-acao"><%= unid_med.abreviacao %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_unid_med_path(unid_med), remote: true, :class => 'btn btn-sm btn-info' %>
+    <%= link_to image_tag('excluir.png'), unid_med, remote: true, :method => :delete, data: {confirm: "Excluir unidade de medida #{unid_med.descricao} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>
