@@ -1,0 +1,10 @@
+
+<tr id="fabricante_<%= fabricante.id %>">
+  <td class="botoes-acao"><%= fabricante.nome %></td>
+  <td class="botoes-acao"><%= fabricante.tel1 %></td>
+  <td class="botoes-acao"><%= fabricante.tel2 %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_fabricante_path(fabricante), remote: true, :class => 'btn btn-sm btn-info botoes-acao' %>
+    <%= link_to image_tag('excluir.png'), fabricante, remote: true, :method => :delete, data: {confirm: "Excluir fabricante #{fabricante.nome} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>
