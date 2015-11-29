@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111235118) do
+ActiveRecord::Schema.define(version: 20151128225700) do
 
   create_table "caixas", force: :cascade do |t|
     t.datetime "data"
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 20151111235118) do
     t.text     "obs",         limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "email",      limit: 255
+    t.string   "street",     limit: 255
+    t.string   "zip",        limit: 255
+    t.string   "city",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "estoques", force: :cascade do |t|
@@ -147,6 +159,12 @@ ActiveRecord::Schema.define(version: 20151111235118) do
   add_index "itens_pedidos", ["estoque_id"], name: "index_itens_pedidos_on_estoque_id", using: :btree
   add_index "itens_pedidos", ["pedido_id"], name: "index_itens_pedidos_on_pedido_id", using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.string   "descricao",  limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "pedidos", force: :cascade do |t|
     t.integer  "client_id",  limit: 4
     t.datetime "created_at",           null: false
@@ -183,8 +201,6 @@ ActiveRecord::Schema.define(version: 20151111235118) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "estoques", "fabricantes"
-  add_foreign_key "estoques", "fornecedors"
-  add_foreign_key "estoques", "grupo_estoques"
   add_foreign_key "itens_pedidos", "estoques"
   add_foreign_key "itens_pedidos", "pedidos"
   add_foreign_key "pedidos", "clients"

@@ -1,0 +1,8 @@
+
+<tr id="payment_<%= payment.id %>">
+  <td><%= payment.descricao %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_payment_path(payment), remote: true, :class => 'btn btn-sm btn-info botoes-acao' %>
+    <%= link_to image_tag('excluir.png'), payment, remote: true, :method => :delete, data: {confirm: "Excluir forma de pagamento #{payment.descricao} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>

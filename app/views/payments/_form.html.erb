@@ -1,0 +1,18 @@
+<%= form_for(@payment, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" class="bg-danger text-danger">
+</div>
+<div class="row">
+ <div class="col-sm-12">
+  <div class="form-group">
+    <%= f.label :descricao, :class => "control-label" %>
+    <%= f.text_field :descricao, :class => "form-control first_input",placeholder: "Descrição", style: "text-transform:uppercase"  %>
+  </div>
+  <div class="actions">
+  <%= f.submit  @payment.new_record? ? "Salvar" : "Salvar", :class => "btn btn-primary" %>
+  <button type="reset" class="btn btn-default">Limpar</button>
+  <button type="button" class="btn btn-defaul " data-dismiss="modal">Cancelar</button>
+  <% end %>
+</div>
+
+</div>
+</div>

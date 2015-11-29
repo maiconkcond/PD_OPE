@@ -5,3 +5,23 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Payment.destroy_all
+ 
+ 
+Payment.create!([
+    {
+    	id: 1, descricao: "DINHEIRO"
+     },
+     {
+    	id: 2, descricao: "VISA"
+    },
+    {
+    	id: 3, descricao: "MASTER"
+    },
+    {
+    	id: 4, descricao: "ELO"
+    }
+ ])
+ 
+p "Created #{Payment.count} payments."
+
