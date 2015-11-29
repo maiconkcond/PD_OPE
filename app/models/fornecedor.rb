@@ -10,7 +10,8 @@ class Fornecedor < ActiveRecord::Base
     self.nome_fantasia.upcase!
     self.endereco.upcase!
     self.bairro.upcase!
-    self.cidade.upcase!
+    self.tel1.upcase!
+    self.tel2.upcase!
   end
 
 end
