@@ -1,0 +1,11 @@
+
+<tr id="insumo_<%= insumo.id %>">
+  <td><%= insumo.descricao %></td>
+  <td><%= insumo.quantidade %></td>
+  <td><%= insumo.unid_med %></td>
+  <td class="botoes-acao">
+  	<%= link_to image_tag('reset.png'), edit_insumo_path(insumo), remote: true, :class => 'btn btn-sm btn-warning botoes-acao' %>
+    <%= link_to image_tag('editar.png'), edit_insumo_path(insumo), remote: true, :class => 'btn btn-sm btn-info botoes-acao' %>
+    <%= link_to image_tag('excluir.png'), insumo, remote: true, :method => :delete, data: {confirm: "Excluir insumo #{insumo.descricao} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>

@@ -2,76 +2,68 @@ class InsumosController < ApplicationController
   before_action :set_insumo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   
-  # GET /insumos
-  # GET /insumos.json
   def index
-    @insumos = Insumo.all
+    @q = Insumo.ransack(params[:q])
+    @insumos = @q.result
     authorize @insumos
+
   end
 
-  # GET /insumos/1
-  # GET /insumos/1.json
   def show
   end
 
-  # GET /insumos/new
   def new
     @insumo = Insumo.new
-    authorize @insumo
   end
 
-  # GET /insumos/1/edit
   def edit
   end
 
-  # POST /insumos
-  # POST /insumos.json
   def create
     @insumo = Insumo.new(insumo_params)
 
     respond_to do |format|
       if @insumo.save
-        format.html { redirect_to @insumo, notice: 'Insumo was successfully created.' }
-        format.json { render :show, status: :created, location: @insumo }
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @insumo.errors, status: :unprocessable_entity }
+        format.json { render json: @insumo.errors.full_messages, 
+                            status: :unprocessable_entity }
       end
+      
     end
   end
 
-  # PATCH/PUT /insumos/1
-  # PATCH/PUT /insumos/1.json
+
   def update
     respond_to do |format|
       if @insumo.update(insumo_params)
-        format.html { redirect_to @insumo, notice: 'Insumo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @insumo }
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :edit }
-        format.json { render json: @insumo.errors, status: :unprocessable_entity }
+        format.json { render json: @insumo.errors.full_messages,
+                                   status: :unprocessable_entity }
       end
+     
     end
   end
 
-  # DELETE /insumos/1
-  # DELETE /insumos/1.json
   def destroy
     @insumo.destroy
     respond_to do |format|
-      format.html { redirect_to insumos_url, notice: 'Insumo was successfully destroyed.' }
+      format.js
+      format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
-  end
+end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_insumo
       @insumo = Insumo.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def insumo_params
-      params.require(:insumo).permit(:descricao, :quantidade)
+      params.require(:insumo).permit(:descricao, :quantidade, :unid_med)
     end
 end

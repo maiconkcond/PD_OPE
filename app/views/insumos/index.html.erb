@@ -1,29 +1,53 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Insumos</h1>
+<%# Cabeçalho da página (NAVBAR) -%>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x60" %>
+      <span class="paginador"><a href="http://localhost:3000" class="paginador"> INICIO </a> > </span>
+      <span class="paginador ativo">INSUMO</span>
+    </div>
+  </div>
+</nav>
 
-<table>
-  <thead>
+<%# Titulo da página separado por uma 'linha' -%>
+<h1 class="titulo-pagina">Insumos</h1>
+<hr size="10" width="100%">
+
+<div class="container">
+  <div class="well">
+    <%= link_to "Inserir novo", new_insumo_path, remote: true, class: "btn buttonCadastros btn-lg" %>
+
+  <button type="button" class="btn btn-lg resetQtd" data-toggle="tooltip" data-placement="right" title="Todos os registros ficaram com 0">Resetar quantidades</button>
+
+    <%= search_form_for @q, :url => {:action => "index"},:html => { :class => "form-inline form-group consultar" } do |f| %>
+      <%= f.search_field :descricao_cont, class: "form-control col-sm-12", placeholder: "Buscar..." %>
+      <button type="submit" class="btn buttonCadastros">Ir!</button>
+      <% end %>
+  </div>
+  <div class="new-insumos"></div>
+ 
+  <table id class="table responstable">
+    <thead>
     <tr>
-      <th>Descricao</th>
+      <th data-th="Driver details"><span>Descrição</span></th>
       <th>Quantidade</th>
-      <th colspan="3"></th>
+      <th>Unidade de medida</th>
+      <th></th>
     </tr>
-  </thead>
+    </thead>
+    <tbody id="insumos">
+    <%= render @insumos %>
+    </tbody>
+  </table>
+ 
+  <%= render 'dialog' %>
+</div>
+ 
 
-  <tbody>
-    <% @insumos.each do |insumo| %>
-      <tr>
-        <td><%= insumo.descricao %></td>
-        <td><%= insumo.quantidade %></td>
-        <td><%= link_to 'Show', insumo %></td>
-        <td><%= link_to 'Edit', edit_insumo_path(insumo) %></td>
-        <td><%= link_to 'Destroy', insumo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Insumo', new_insumo_path %>
