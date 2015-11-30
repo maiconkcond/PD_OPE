@@ -70,92 +70,147 @@ function escondeDiv() {
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
         <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
+        <li><a href="#tab3" data-toggle="tab">ENTREGA</a></li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="tab1" ng-controller="atualiza">
+          <div class="tab-pane active" id="tab1" ng-controller="atualiza">
 
-          {{message}}
+                  {{message}}
 
-          <% @pedido.each do |pedido| %>
-          <% if pedido.status == 1 %>
+                  <% @pedido.each do |pedido| %>
+                  <% if pedido.status == 1 %>
 
-           <% agora=Time.new %>
-            <% 
-            now=agora.min
-            pd=pedido.created_at.min
-            dif=now - pd
+                   <% agora=Time.new %>
+                    <% 
+                    now=agora.min
+                    pd=pedido.created_at.min
+                    dif=now - pd
 
-            if dif > 1 or dif < 0
-              ok="atrasado!!"
-            else
-              ok="em espera!"
-            end
-            %>
-           
-           <%
-             if dif > 30
-           %>
-             <div class="itensPedido2">
-           <% else %>
-              <div class="itensPedido">
-                 <% end %>
-                   <%= pedido.client.nome %><br/>
-                   endereço : <%= pedido.client.endereco %><br/>
-                   <div class="iconsPedido">
-                       
-                        <%= now %>
-                        <%= pd %>
-                        <%= dif %>
-                        <%= ok %>
-                        <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                         <a href="../status/<%= pedido.id%>"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                  </div>
-             </div>
-        <% end %>
-        <% end %>
-      </div>
+                    if dif > 1 or dif < 0
+                      ok="atrasado!!"
+                    else
+                      ok="em espera!"
+                    end
+                    %>
+                   
+                   <%
+                     if dif > 30
+                   %>
+                     <div class="itensPedido2">
+                   <% else %>
+                      <div class="itensPedido">
+                         <% end %>
+                           <%= pedido.client.nome %><br/>
+                           endereço : <%= pedido.client.endereco %><br/>
+                           <div class="iconsPedido">
+                               
+                                <%= now %>
+                                <%= pd %>
+                                <%= dif %>
+                                <%= ok %>
+                                <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão'  } %>
+                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="../status/<%= pedido.id%>"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                          </div>
+                     </div>
+                <% end %>
+                <% end %>
+              </div>
+              
+              <!-- tab de produção-->
+              <div class="tab-pane" id="tab2">
+                      <% @pedido.each do |pedido| %>
+                      <% if pedido.status == 2 %>
+                      
+                          <% agora=Time.new %>
+                          <% 
+                          now=agora.min
+                          pd=pedido.created_at.min
+                          dif=now - pd
 
-      <div class="tab-pane" id="tab2">
-        <% @pedido.each do |pedido| %>
-        <% if pedido.status == 2 %>
-        
-         <% agora=Time.new %>
-            <% 
-            now=agora.min
-            pd=pedido.created_at.min
-            dif=now - pd
+                          if dif > 1 or dif < 0
+                            ok="atrasado!!"
+                          else
+                            ok="em espera!"
+                          end
+                          %>
+                          <%
+                           if dif > 1 or dif < 0
+                          %>
+                     <div class="itensPedido2">
+                          <% else %>
+                       <div class="itensPedido">
+                           <% end %>
 
-            if dif > 1 or dif < 0
-              ok="atrasado!!"
-            else
-              ok="em espera!"
-            end
-            %>
-         <%
-             if dif > 1 or dif < 0
-           %>
-             <div class="itensPedido2">
-           <% else %>
-              <div class="itensPedido">
-           <% end %>
+                              <%= pedido.client.nome %><br/>
+                              endereço : <%= pedido.client.endereco %><br/>
+                             <div class="iconsPedido">
+                            
+                                <%= now %>
+                                <%= pd %>
+                                <%= dif %>
+                                <%= ok %>
+                                <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
+                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="../status2/<%= pedido.id%>"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                             </div>
+                        </div>
+                                <% end %>
+                                <% end %>
+                    </div>
 
-         <%= pedido.client.nome %><br/>
-         endereço : <%= pedido.client.endereco %><br/>
-         <div class="iconsPedido">
-          <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-          <%= now %>
-            <%= pd %>
-            <%= dif %>
-            <%= ok %>
+
+              
+             <!-- tab de entrega-->
+              <div class="tab-pane" id="tab3">
+                      <% @pedido.each do |pedido| %>
+                      <% if pedido.status == 3 %>
+                      
+                          <% agora=Time.new %>
+                          <% 
+                          now=agora.min
+                          pd=pedido.created_at.min
+                          dif=now - pd
+
+                          if dif > 1 or dif < 0
+                            ok="atrasado!!"
+                          else
+                            ok="em espera!"
+                          end
+                          %>
+                          <%
+                           if dif > 1 or dif < 0
+                          %>
+                     <div class="itensPedido2">
+                          <% else %>
+                       <div class="itensPedido">
+                           <% end %>
+
+                              <%= pedido.client.nome %><br/>
+                              endereço : <%= pedido.client.endereco %><br/>
+                             <div class="iconsPedido">
+                             
+                                <%= now %>
+                                <%= pd %>
+                                <%= dif %>
+                                <%= ok %>
+                                <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
+                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                             </div>
+                        </div>
+                                <% end %>
+                                <% end %>
+                    </div>
+
+
+
+
+
+             </div><!-- final tab produção-->
+
+             
         </div>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
-</div>
+     </div>
 
 </div> <!--ROW PRINCIPAL -->
 
@@ -175,165 +230,33 @@ function escondeDiv() {
         </div>
         <div class="modal-body">
 
+             <div class="row div_tel_busc">
+                  <div class="field form-horizontal col-md-4"> 
+                      <div class="input-group col-md-12"> 
+                       <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
+                       <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", onclick: "reapareceDiv()", onBlur: "escondeDiv()" %>
 
+                     </div>
+                   </div>
+                  <div class="field form-horizontal col-md-2"> 
+                      <div class="input-group col-md-12"> 
+                        <button type="submit" class="btn btn-warning">Buscar</button>
+                      </div>
+                  </div>
+                
+                      <% end %>
 
-
-         <div class="row div_tel_busc">
-            <div class="field form-horizontal col-md-4"> 
-              <div class="input-group col-md-12"> 
-               <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
-               <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", onclick: "reapareceDiv()", onBlur: "escondeDiv()" %>
-
-             </div>
+                
+                    <div class="field form-horizontal col-md-6"> 
+                      <div class="input-group col-md-12"> 
+                        <div class="alert alert-warning alert-dismissible" id="alert-warning" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <strong>Dica!</strong> Digite o numero para buscar na base de cadastro.
+                        </div>
+                      </div>
+                    </div>
            </div>
-           <div class="field form-horizontal col-md-2"> 
-            <div class="input-group col-md-12"> 
-              <button type="submit" class="btn btn-warning">Buscar</button>
-            </div>
-          </div>
-        
-        <% end %>
-
-        <%= form_for(@pedido2) do |p| %>
-
-          <%= form_for(@client2, :html => { :class => 'form-inline' })  do |f| %>
-         
-        
-            <div class="field form-horizontal col-md-6"> 
-              <div class="input-group col-md-12"> 
-                <div class="alert alert-warning alert-dismissible" id="alert-warning" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <strong>Dica!</strong> Digite o numero para buscar na base de cadastro.
-                </div>
-              </div>
-            </div>
-          </div>
-    
-
-            
-
-        <h4>Informações do cliente</h4>
-        </hr>
-
-          <div class="row">
-          <div class="field form-horizontal col-md-2">
-            <%= p.label :client_id, class: "sr-only" %>
-            <div class="input-group col-md-12">
-              <%= p.text_field :client_id, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "ID", disabled:true %>
-            </div>
-          </div>
-          <div class="field form-horizontal col-md-10">
-              <%= f.label :nome, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome" , disabled:true%>
-              </div>
-            </div>
-        
-          </div>
-
-          <div class="row">
-            <div class="field form-horizontal col-md-9">
-              <%= f.label :endereco, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço" , disabled:true %>
-              </div>
-            </div>
-
-            <div class="field form-horizontal col-md-3">
-              <%= f.label :complemento, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl." , disabled:true%>
-              </div>
-            </div>
-          </div>
-
-           <div class="row">
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :bairro, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro" , disabled:true %>
-              </div>
-            </div>
-
-            <div class="field form-horizontal col-md-2">
-              <%= f.label :cep, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP" , disabled:true %>
-              </div>
-            </div>
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :obs, class: "sr-only" %>
-              <div class="input-group col-md-12">
-                <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "Ponto de Referência", disabled:true %>
-              </div>
-            </div>
-          </div>   
-       <% end %>
-<h4>Informações dos produtos</h4>
-        <div class="row">
-          <div class="field form-horizontal col-md-3">
-
-            <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">Tipo</select>
-          </div>
-          <div class="field form-horizontal col-md-3">
-           <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">Produto</select>
-          </div>
-          <div class="field form-horizontal col-md-2">
-            <div class="input-group col-md-12">
-              <input id="valor" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" disabled/> 
-            </div>
-          </div>
-          <div class="field form-horizontal col-md-2">
-            <div class="input-group col-md-12">
-              <input id="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" disabled /> 
-            </div>
-          </div>
-          <div class="field form-horizontal col-md-1">
-            <div class="input-group col-md-12">
-              <a href="#" class="btn btn-warning adc" role="button">+</a>
-            </div>
-          </div>
-        </div>
-<div class="row"  >
-        <table class="table table table-bordered">
-          <thead class="danger">
-            <tr class="row-fluid">
-              <td class="warning">Descrição</td>
-              <td class="warning">Qtd</td>
-              <td class="warning">Valor Unit.</td>
-              <td class="warning">Valor Total</td>
-            </tr>
-          </thead>
-          <tbody class="table-striped">
-          
-
-           <tr class="row-fluid" ng-repeat="estoque in estoqueProd">
-              <td>{{estoque.nome}}</td>
-              <td><%= '-' %></td>
-              <td><%= '-' %></td>
-              <td><%= '-' %></td>
-            </tr>
-          </tbody>
-        </table>
-
-        </div>
-        <div class="row">
-          <div class="field form-horizontal col-md-6">
-            <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">Forma de pagamento</select>
-          </div>
-          <div class="field form-horizontal col-md-6">
-              <h2 class="valorTotal">R$ 0,00</h2>
-          </div>
-        </div>
-
-          <!--final do formulario clientes-->
-          <div class="modal-footer">
-            <div class="actions">
-              <%= p.submit  "Finalizar / Salvar", class: "btn btn-primary btn-lg "%>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
-          
-            <% end %> 
-      </div>
-    </div>
+  
+     </div>   
 
   </div>

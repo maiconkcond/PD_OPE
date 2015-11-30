@@ -22,14 +22,17 @@ class ClientsController < ApplicationController
     @q = Client.ransack(params[:q])
     @clients = @q.result
     @client = Client.new
-    @clients = Client.all
+    
+
   end
 
   # GET /clients/1/edit
   def edit
     @pedido = Pedido.new
+    @pedido = Pedido.all
     @q = Client.ransack(params[:q])
     @clients = @q.result
+     
   end
 
   # POST /clients

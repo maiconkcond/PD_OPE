@@ -106,6 +106,7 @@ $(document).ready(function()
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
         <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
+        <li><a href="#tab3" data-toggle="tab">ENTREGA</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
@@ -131,7 +132,7 @@ $(document).ready(function()
             <%= pd %>
             <%= dif %>
             <%= ok %>
-            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
             <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
           </div>
         </div>
@@ -151,6 +152,52 @@ $(document).ready(function()
       <% end %>
       <% end %>
     </div>
+
+
+     
+             <!-- tab de entrega-->
+              <div class="tab-pane" id="tab3">
+                      <% @pedido.each do |pedido| %>
+                      <% if pedido.status == 3 %>
+                      
+                          <% agora=Time.new %>
+                          <% 
+                          now=agora.min
+                          pd=pedido.created_at.min
+                          dif=now - pd
+
+                          if dif > 1 or dif < 0
+                            ok="atrasado!!"
+                          else
+                            ok="em espera!"
+                          end
+                          %>
+                          <%
+                           if dif > 1 or dif < 0
+                          %>
+                     <div class="itensPedido2">
+                          <% else %>
+                       <div class="itensPedido">
+                           <% end %>
+
+                              <%= pedido.client.nome %><br/>
+                              endereço : <%= pedido.client.endereco %><br/>
+                             <div class="iconsPedido">
+                             
+                                <%= now %>
+                                <%= pd %>
+                                <%= dif %>
+                                <%= ok %>
+                                <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
+                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                             </div>
+                        </div>
+                                <% end %>
+                                <% end %>
+                    </div>
+
+
+
   </div>
 </div>
 </div>

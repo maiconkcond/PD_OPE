@@ -10,6 +10,9 @@ meuApp.controller('principal', function($scope, $resource, $http){
      //serviço
     var Itens=$resource("http://localhost:3000/api/itens_pedidos/:id", { id: '@_id' });
     var pedidoJson=$resource("http://localhost:3000/api/pedidos/:id", { id: '@_id' });
+    var estoqueJson=$resource("http://localhost:3000/api/estoques/:id", null, {
+                                                      'update': { method:'PUT' }
+                                                    });
 
     // array dos itens
 	  $scope.estoqueProd=[];
@@ -17,8 +20,12 @@ meuApp.controller('principal', function($scope, $resource, $http){
     //metodo que finaliza o serviço(pelo menos deveria)
      $scope.salva= function(){
         alert("clicou no salva");
-      
- 
+        
+        
+            // Now call update passing in the ID first then the object you are updating
+            //$scope.estoque={qtd:2}
+          //estoqueJson.update({ id:1 },estoque: $scope.estoque);
+         
         //pega o id do cliente
         var id = $("#client_id").val();
         //cria o json cm os dados e salva o pedido
@@ -47,7 +54,7 @@ meuApp.controller('principal', function($scope, $resource, $http){
                    
               });                                    
              
-          window.location.href = "/home";
+          window.location.href = "/home"; 
      }
 
     //calcula os valores dos itens
