@@ -12,8 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
 //= require angular-resource.min
 //= require angular.min
+//= require jquery
+//= require bootstrap-sprockets
+$(document).ajaxError(function(event,xhr,options,exc) {
+    
+    var errors = JSON.parse(xhr.responseText);
+    var er ="<ul>";
+    for(var i = 0; i < errors.length; i++){
+        var list = errors[i];
+        er += "<li>"+list+"</li>"
+    }
+    er+="</ul>"
+    $("#error_explanation").html(er);
+       
+});
+
+ 

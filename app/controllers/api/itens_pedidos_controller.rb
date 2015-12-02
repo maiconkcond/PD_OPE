@@ -30,7 +30,7 @@ module Api
       # PATCH/PUT /itens_pedidos/1
       # PATCH/PUT /itens_pedidos/1.json
       def update
-        respond_with ItensPedido.create(params[:id], params[:itens_pedido])
+        respond_with ItensPedido.update(params[:id], params[:itens_pedido])
        
       end
 

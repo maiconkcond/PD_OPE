@@ -1,25 +1,26 @@
-<%= form_for(@insumo) do |f| %>
-  <% if @insumo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@insumo.errors.count, "error") %> prohibited this insumo from being saved:</h2>
-
-      <ul>
-      <% @insumo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :descricao %><br>
-    <%= f.text_field :descricao %>
+<%= form_for(@insumo, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" class="bg-danger text-danger">
+</div>
+<div class="row">
+ <div class="col-sm-12">
+  <div class="form-group">
+    <%= f.label :descricao, :class => "control-label" %>
+    <%= f.text_field :descricao, :class => "form-control first_input",placeholder: "Descrição", style: "text-transform:uppercase"  %>
   </div>
-  <div class="field">
-    <%= f.label :quantidade %><br>
-    <%= f.text_field :quantidade %>
+  <div class="form-group">
+    <%= f.label :quantidade, :class => "control-label" %>
+    <%= f.text_field :quantidade, :class => "form-control",placeholder: "Quantidade", style: "text-transform:uppercase", id: "qtd"  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :unid_med, :class => "control-label" %>
+    <%= f.collection_select :unid_med, UnidMed.all, :id, :abreviacao, {:prompt => ''}, :class => "form-control"  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= f.submit  @insumo.new_record? ? "Salvar" : "Salvar", :class => "btn btn-primary" %>
+  <button type="reset" class="btn btn-default">Limpar</button>
+  <button type="button" class="btn btn-defaul " data-dismiss="modal">Cancelar</button>
+  <% end %>
+</div>
+
+</div>
+</div>

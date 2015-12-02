@@ -1,0 +1,15 @@
+
+<tr id="fornecedor_<%= fornecedor.id %>">
+  <td class="botoes-acao"><%= fornecedor.razao_social %></td>
+  <td class="botoes-acao"><%= fornecedor.nome_fantasia %></td>
+  <td class="botoes-acao"><%= fornecedor.endereco %></td>
+  <td class="botoes-acao"><%= fornecedor.bairro %></td>
+  <td class="botoes-acao"><%= fornecedor.cep %></td>
+  <td class="botoes-acao"><%= fornecedor.cidade %></td>
+  <td class="botoes-acao"><%= fornecedor.tel1 %></td>
+  <td class="botoes-acao"><%= fornecedor.tel2 %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_fornecedor_path(fornecedor), remote: true, :class => 'btn btn-sm btn-info botoes-acao' %>
+    <%= link_to image_tag('excluir.png'), fornecedor, remote: true, :method => :delete, data: {confirm: "Excluir fornecedor #{fornecedor.nome_fantasia} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>

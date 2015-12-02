@@ -1,25 +1,22 @@
-<%= form_for(@unid_med) do |f| %>
-  <% if @unid_med.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@unid_med.errors.count, "error") %> prohibited this unid_med from being saved:</h2>
-
-      <ul>
-      <% @unid_med.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :descricao %><br>
-    <%= f.text_field :descricao %>
+<%= form_for(@unid_med, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" class="bg-danger text-danger">
+</div>
+<div class="row">
+ <div class="col-sm-12">
+  <div class="form-group">
+    <%= f.label :descricao, :class => "control-label" %>
+    <%= f.text_field :descricao, :class => "form-control first_input", placeholder: "Descrição", style: "text-transform:uppercase"  %>
   </div>
-  <div class="field">
-    <%= f.label :abreviacao %><br>
-    <%= f.text_area :abreviacao %>
+  <div class="form-group">
+    <%= f.label :abreviacao, :class => "control-label" %>
+    <%= f.text_field :abreviacao, :class => "form-control",placeholder: "Abreviação", style: "text-transform:uppercase"  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= f.submit  @unid_med.new_record? ? "Salvar" : "Salvar", :class => "btn btn-primary" %>
+  <button type="reset" class="btn btn-default">Limpar</button>
+  <button type="button" class="btn btn-defaul " data-dismiss="modal">Cancelar</button>
+  <% end %>
+</div>
+
+</div>
+</div>

@@ -57,4 +57,4 @@ production:
   <<: *default
   database: PD_OPE_production
   username: PD_OPE
-  password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['mysql2://pizzariadelivery:Xy36p5X!H-K3@mysql2.gear.host/pizzariadelivery'] %>

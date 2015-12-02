@@ -1,29 +1,48 @@
-<p id="notice"><%= notice %></p>
+<%# Cabeçalho da página (NAVBAR) -%>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x60" %>
+      <span class="paginador"><a href="http://localhost:3000" class="paginador"> INICIO </a> </span>
+      <span class="paginador ativo">UNIDADE DE MEDIDAS</span>
+    </div>
+  </div>
+</nav>
 
-<h1>Listing Unid Meds</h1>
+<%# Titulo da página separado por uma 'linha' -%>
+<h1 class="titulo-pagina">Unidade de Medidas</h1>
+<hr size="10" width="100%">
 
-<table>
-  <thead>
+<div class="container">
+  <div class="well">
+    <%= link_to "Inserir novo", new_unid_med_path, remote: true, class: "btn buttonCadastros btn-lg" %>
+    <%= search_form_for @q, :url => {:action => "index"},:html => { :class => "form-inline form-group consultar" } do |f| %>
+      <%= f.search_field :descricao_cont, class: "form-control col-sm-12", placeholder: "Buscar..." %>
+      <button type="submit" class="btn buttonCadastros">Ir!</button>
+      <% end %>
+  </div>
+  <div class="new-unid_med"></div>
+ 
+  <table id class="table responstable">
+    <thead>
     <tr>
-      <th>Descricao</th>
-      <th>Abreviacao</th>
-      <th colspan="3"></th>
+      <th data-th="Driver details"><span>Descrição</span></th>
+      <th>Abreviação</th>
+      <th></th>
     </tr>
-  </thead>
+    </thead>
+    <tbody id="unid_meds">
+    <%= render @unid_meds %>
+    </tbody>
+  </table>
+ 
+  <%= render 'dialog' %>
+</div>
+ 
 
-  <tbody>
-    <% @unid_meds.each do |unid_med| %>
-      <tr>
-        <td><%= unid_med.descricao %></td>
-        <td><%= unid_med.abreviacao %></td>
-        <td><%= link_to 'Show', unid_med %></td>
-        <td><%= link_to 'Edit', edit_unid_med_path(unid_med) %></td>
-        <td><%= link_to 'Destroy', unid_med, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Unid med', new_unid_med_path %>

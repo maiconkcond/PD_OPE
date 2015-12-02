@@ -1,0 +1,15 @@
+
+<tr id="funcionario_<%= funcionario.id %>">
+  <td class="botoes-acao"><%= funcionario.nome %></td>
+  <td class="botoes-acao"><%= funcionario.cargo %></td>
+  <td class="botoes-acao"><%= funcionario.salario %></td>
+  <td class="botoes-acao"><%= funcionario.comissao %></td>
+  <td class="botoes-acao"><%= funcionario.endereco %></td>
+  <td class="botoes-acao"><%= funcionario.cep %></td>
+  <td class="botoes-acao"><%= funcionario.tel %></td>
+  <td class="botoes-acao"><%= funcionario.cel %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_funcionario_path(funcionario), remote: true, :class => 'btn btn-sm btn-info botoes-acao' %>
+    <%= link_to image_tag('excluir.png'), funcionario, remote: true, :method => :delete, data: {confirm: "Excluir funcionario #{funcionario.nome} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>

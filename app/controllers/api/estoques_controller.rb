@@ -33,7 +33,7 @@ class EstoquesController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
-   respond_with Estoque.create(params[:id], pedido_params)
+   respond_with Estoque.update(params[:id], pedido_params)
   end
 
   # DELETE /pedidos/1
@@ -50,7 +50,7 @@ class EstoquesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.require(:estoque).permit(:id, :qtd)
+      params.require(:estoque).permit(:id, :quantidade)
     end
 end
 

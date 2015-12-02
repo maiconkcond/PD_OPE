@@ -33,7 +33,7 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
-   respond_with Pedido.create(params[:id], params[:pedido])
+   respond_with Pedido.update(params[:id], pedido_params)
   end
 
   # DELETE /pedidos/1

@@ -1,0 +1,49 @@
+
+
+<%# Cabeçalho da página (NAVBAR) -%>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x60" %>
+      <span class="paginador"><a href="http://localhost:3000" class="paginador"> INICIO </a></span>
+      <span class="paginador ativo">FORMAS DE PAGAMENTO</span>
+    </div>
+  </div>
+</nav>
+
+<%# Titulo da página separado por uma 'linha' -%>
+<h1 class="titulo-pagina">Formas de Pagamentos</h1>
+<hr size="10" width="100%">
+
+<div class="container">
+  <div class="well">
+    <%= link_to "Inserir novo", new_payment_path, remote: true, class: "btn buttonCadastros btn-lg" %>
+    <%= search_form_for @q, :url => {:action => "index"},:html => { :class => "form-inline form-group consultar" } do |f| %>
+      <%= f.search_field :descricao_cont, class: "form-control col-sm-12", placeholder: "Buscar..." %>
+      <button type="submit" class="btn buttonCadastros">Ir!</button>
+      <% end %>
+  </div>
+  <div class="new-payment"></div>
+ 
+  <table id class="table responstable">
+    <thead>
+    <tr>
+      <th data-th="Driver details"><span>Descrição</span></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id="payments">
+    <%= render @payments %>
+    </tbody>
+  </table>
+ 
+  <%= render 'dialog' %>
+</div>
+ 
+

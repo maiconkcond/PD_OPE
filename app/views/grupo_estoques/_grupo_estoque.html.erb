@@ -1,0 +1,8 @@
+<tr id="grupo_estoque_<%= grupo_estoque.id %>">
+  <td class="botoes-acao"><%= grupo_estoque.nome %></td>
+  <td class="botoes-acao"><%= grupo_estoque.descricao_loga %></td>
+  <td class="botoes-acao">
+    <%= link_to image_tag('editar.png'), edit_grupo_estoque_path(grupo_estoque), remote: true, :class => 'btn btn-sm btn-info' %>
+    <%= link_to image_tag('excluir.png'), grupo_estoque, remote: true, :method => :delete, data: {confirm: "Excluir unidade de medida #{grupo_estoque.nome} ?"}, :class => 'btn btn-sm btn-danger botoes-acao' %>
+  </td>
+</tr>

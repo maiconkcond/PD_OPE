@@ -14,6 +14,9 @@ class HomeController < ApplicationController
   
   end
 
+ def teste
+ end
+
 def new
 	  @client2 = Client.new
 
@@ -105,7 +108,15 @@ def cadastra
 
   end
 
-
+  # DELETE /pedidos/1
+  # DELETE /pedidos/1.json
+   def destroy
+    @pedido.destroy
+    respond_to do |format|
+      format.html { redirect_to 'http://localhost:3000/', notice: 'Pedido was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
  def itens_pedido_params
       params.require(:itens_pedido).permit(:estoque_id, :pedido_id)
