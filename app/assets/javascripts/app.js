@@ -22,6 +22,9 @@ meuApp.controller('principal', function($scope, $resource, $http){
      var insumosJson=$resource("/api/insumos/:id", null, {
                                                       'update': { method:'PUT', params: {id:"@id"}}
                                                     });
+     var itensCaixasJson=$resource("/api/itens_caixas/:id", null, {
+                                                      'update': { method:'PUT', params: {id:"@id"}}
+                                                    });
 
     // array dos itens
 	  $scope.estoqueProd=[];
@@ -60,6 +63,16 @@ meuApp.controller('principal', function($scope, $resource, $http){
             }); 
    }
 
+    $scope.ngStatus3= function(id){
+ 
+            pedidoJson.get({id:id}, function(data){
+                 data.status=4;
+                 data.$update({id:id});
+                
+                   location.reload(); 
+            }); 
+   }
+
    //zera insumo por id
    $scope.zeraInsumoId= function(id){
     
@@ -89,11 +102,15 @@ meuApp.controller('principal', function($scope, $resource, $http){
 
     //metodo que soma no caixa
     $scope.somaCaixa= function(){
-           
+           for(var i=0 ; i < $scope.estoqueProd.length ; i++){
+                         $scope.valorTotal += parseFloat($scope.estoqueProd[i].valor * $scope.estoqueProd[i].qtd);
+                           
+                      }
+            console.log("valorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr "+$scope.valorTotal);
                // Now call update passing in the ID first then the object you are updating
             $scope.caixaId= caixaJson.get({id:1}, function(data){
-                console.log($scope.caixaId);
-                 data.soma_geral=data.soma_geral+10.35;
+                console.log("caixaaaa= "+$scope.caixaId);
+                 data.soma_geral=data.soma_geral+10;
                  data.$update({id:1});
 
             });
@@ -108,6 +125,8 @@ meuApp.controller('principal', function($scope, $resource, $http){
 
         //pega o id do cliente
         var id = $("#client_id").val();
+        var formapgto = $("#formapgto").val();
+
         //cria o json cm os dados e salva o pedido
         $scope.pedidoDados={client_id: id, status:1};
         pedidoJson.save({ pedido: $scope.pedidoDados, function() {
@@ -126,34 +145,58 @@ meuApp.controller('principal', function($scope, $resource, $http){
 
                        
                         $scope.itens_pedido={estoque_id: $scope.estoqueProd[i].estoque_id, pedido_id: $scope.lastPedido, quantidade:$scope.estoqueProd[i].qtd};
-                    
-                        
-                         pedidoJson.get({id:90}, function(data){
-                          data.total=6;
-                           data.$update({id:90});
-                         }); 
-
-                          
+  
                         Itens.save({ itens_pedido: $scope.itens_pedido, function() {
                          // Optional function. Clear html form, redirect or whatever.
                          } });
 
                       }     
-            
+
+
+
                       for(var i=0 ; i < $scope.estoqueProd.length ; i++){
                          $scope.valorTotal += parseFloat($scope.estoqueProd[i].valor * $scope.estoqueProd[i].qtd);
-                          console.log("valor totalllll 01="+$scope.valorTotal);
+                           
                       }
+                            console.log("testeeee= "+$scope.valorTotal);
 
-               
-               
+                         $scope.dados={total: $scope.valorTotal, id_forma_pagamento:formapgto, id_caixas:1};
+                         itensCaixasJson.save({ itens_caixa: $scope.dados, function() {
+                             // Optional function. Clear html form, redirect or whatever.
+                             } });
+
+                         
+                              //console.log("ID DO PEDIDOOOOOO"+$scope.lastPedido);
+                              //console.log("VALOR TOTALLLLL"+$scope.valorTotal);
+                              //console.log("VALOR TOTALLLLL"+formapgto);
+                             
               });                                    
              
-              console.log("valor totalllll 02="+$scope.valorTotal);
-               
-                      
+              
+              
+                    
                       
           window.location.href = "/home"; 
+     }
+
+     $scope.teste= function(){
+      alert("foi");
+                    for(var i=0 ; i < $scope.estoqueProd.length ; i++){
+                         $scope.valorTotal += parseFloat($scope.estoqueProd[i].valor * $scope.estoqueProd[i].qtd);
+                           console.log("testeeee= "+$scope.valorTotal);
+                      }
+                      console.log("testeeee= "+$scope.valorTotal);
+                      caixaJson.query(function(data){
+                         var lastid= data.length - 1;
+                         $scope.lastCaixa=data[lastid].id;
+                          
+                         $scope.dados={total: $scope.valorTotal, id_forma_pagamento:formapgto, id_caixas:$scope.lastCaixa};
+                         itensCaixasJson.save({ itens_caixa: $scope.dados, function() {
+                             // Optional function. Clear html form, redirect or whatever.
+                             } });
+
+                      });         
+
      }
 
     //calcula os valores dos itens

@@ -382,8 +382,8 @@ $(document).ready(function()
                             <td ng-model="prod.id">{{estoque.id}}</td>
                             <td>{{estoque.nome}}</td>
                             <td>{{estoque.qtd}}</td>
-                            <td>{{estoque.valor}}</td>
-                            <td>{{estoque.valor * estoque.qtd}}</td> 
+                            <td><%= number_to_currency("{{estoque.valor}}")%></td>
+                            <td><%= number_to_currency("{{estoque.valor * estoque.qtd}}")%></td> 
                             <td> <button type="button"  ng-click="excluir($index)">Excluir</button></td> 
                             
                           </tr>
@@ -402,7 +402,7 @@ $(document).ready(function()
                         </select>
                       </div>
                       <div class="field form-horizontal col-md-6">
-                          <h2 class="valorTotal" >R$ {{total}}</h2>
+                          <h2 class="valorTotal" ><%= number_to_currency("{{total}}") %></h2>
                       </div>
             </div>
 
@@ -415,6 +415,7 @@ $(document).ready(function()
                          </form>
                         
                           <button type="button" ng-click="homeRedirect()"; class="btn btn-default" data-dismiss="modal">Sair</button>
+                          <button type="button" ng-click="teste()"; class="btn btn-default" data-dismiss="modal">teste</button>
 
                          
 

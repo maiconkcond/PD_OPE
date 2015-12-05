@@ -188,7 +188,7 @@ function escondeDiv() {
  
                                 <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a> 
                                 <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                                <a href="http://localhost:3000/" ng-click="somaCaixa()" title="Clique para concluir o pedido"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="http://localhost:3000/" ng-click="ngStatus3(<%=pedido.id%>)" title="Clique para concluir o pedido"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
                              </div>
                         </div>
                                 <% end %>

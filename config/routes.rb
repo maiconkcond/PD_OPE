@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :itens_caixas
   resources :payments
   resources :caixas
   get 'control_users/index'
@@ -42,6 +43,10 @@ Rails.application.routes.draw do
 
    namespace :api, defaults: {format: 'json'} do 
      resources :insumos
+   end
+
+   namespace :api, defaults: {format: 'json'} do 
+     resources :itens_caixas
    end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

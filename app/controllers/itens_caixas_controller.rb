@@ -1,0 +1,2 @@
+class ItensCaixasController < ApplicationController
+end

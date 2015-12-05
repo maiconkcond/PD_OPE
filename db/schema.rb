@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203065231) do
+ActiveRecord::Schema.define(version: 20151205032316) do
 
   create_table "caixas", force: :cascade do |t|
     t.datetime "data"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20151203065231) do
     t.text     "cod_barras",       limit: 65535
     t.decimal  "valor_custo",                    precision: 10
     t.decimal  "margem_lucro",                   precision: 10
-    t.decimal  "valor_venda",                    precision: 10
+    t.float    "valor_venda",      limit: 53
     t.text     "obs",              limit: 65535
     t.string   "insumo2",          limit: 255
     t.string   "insumo1",          limit: 255
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(version: 20151203065231) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "unid_med",   limit: 255
+  end
+
+  create_table "itens_caixas", force: :cascade do |t|
+    t.decimal  "total",                          precision: 10
+    t.decimal  "total_retirado",                 precision: 10
+    t.integer  "id_forma_pagamento", limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "id_caixas",          limit: 255
   end
 
   create_table "itens_pedidos", force: :cascade do |t|
