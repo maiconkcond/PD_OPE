@@ -269,14 +269,14 @@ $(document).ready(function()
 
           <div class="row">
           <div class="field form-horizontal col-md-2">
-            <%= f.label :client_id, class: "sr-only" %>
+            ID:
             <div class="input-group col-md-12">
               
               <input id="client_id" name="client_id" class="form-control col-sm-12" placeholder="ID" ng-model"cli_id" value="<%=client.id%>" disabled>
             </div>
           </div>
           <div class="field form-horizontal col-md-10">
-              <%= f.label :nome, class: "sr-only" %>
+              Nome:
               <div class="input-group col-md-12">
                 <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome", value: client.nome, disabled:true  %>
               </div>
@@ -286,14 +286,14 @@ $(document).ready(function()
 
           <div class="row">
             <div class="field form-horizontal col-md-9">
-              <%= f.label :endereco, class: "sr-only" %>
+              Endereço:
               <div class="input-group col-md-12">
                 <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço", value:client.endereco, disabled:true %>
               </div>
             </div>
 
             <div class="field form-horizontal col-md-3">
-              <%= f.label :complemento, class: "sr-only" %>
+              Complemento:
               <div class="input-group col-md-12">
                 <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl.", value:client.complemento, disabled:true %>
               </div>
@@ -301,21 +301,21 @@ $(document).ready(function()
           </div>
 
            <div class="row">
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :bairro, class: "sr-only" %>
+            <div class="field form-horizontal col-md-9">
+              Bairro:
               <div class="input-group col-md-12">
                 <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro", value:client.bairro, disabled:true  %>
               </div>
             </div>
 
-            <div class="field form-horizontal col-md-2">
-              <%= f.label :cep, class: "sr-only" %>
-              <div class="input-group col-md-15">
+            <div class="field form-horizontal col-md-3">
+              Cep:
+              <div class="input-group col-md-12">
                 <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP", value: client.cep, disabled:true %>
               </div>
             </div>
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :obs, class: "sr-only" %>
+            <div class="field form-horizontal col-md-12  ">
+              Obs:
               <div class="input-group col-md-12">
                 <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "obs",value:client.obs, disabled:true %>
               </div>

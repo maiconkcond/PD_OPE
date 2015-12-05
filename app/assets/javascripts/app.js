@@ -93,7 +93,7 @@ meuApp.controller('principal', function($scope, $resource, $http){
                // Now call update passing in the ID first then the object you are updating
             $scope.caixaId= caixaJson.get({id:1}, function(data){
                 console.log($scope.caixaId);
-                 data.soma_geral=data.soma_geral+10;
+                 data.soma_geral=data.soma_geral+10.35;
                  data.$update({id:1});
 
             });
@@ -114,34 +114,42 @@ meuApp.controller('principal', function($scope, $resource, $http){
               
         } });
 
+            $scope.valorTotal=0;
 
              pedidoJson.query(function(data){
                      var lastid= data.length - 1;
                      $scope.lastPedido=data[lastid].id;
                      
-                     
+                    
                       //for que salva os itens
                      for(var i=0 ; i < $scope.estoqueProd.length ; i++){
 
                        
                         $scope.itens_pedido={estoque_id: $scope.estoqueProd[i].estoque_id, pedido_id: $scope.lastPedido, quantidade:$scope.estoqueProd[i].qtd};
-                        pedidoJson.get({id:90}, function(data){
-                        data.total=6;
-                        data.$update({id:90});
-                      }); 
+                    
+                        
+                         pedidoJson.get({id:90}, function(data){
+                          data.total=6;
+                           data.$update({id:90});
+                         }); 
 
                           
                         Itens.save({ itens_pedido: $scope.itens_pedido, function() {
                          // Optional function. Clear html form, redirect or whatever.
                          } });
 
-                     }     
+                      }     
             
-                console.log("PEDDIDOID="+$scope.lastPedido);
+                      for(var i=0 ; i < $scope.estoqueProd.length ; i++){
+                         $scope.valorTotal += parseFloat($scope.estoqueProd[i].valor * $scope.estoqueProd[i].qtd);
+                          console.log("valor totalllll 01="+$scope.valorTotal);
+                      }
+
+               
                
               });                                    
              
-              console.log("PEDDIDOIDooo="+$scope.lastPedido);
+              console.log("valor totalllll 02="+$scope.valorTotal);
                
                       
                       
@@ -152,7 +160,7 @@ meuApp.controller('principal', function($scope, $resource, $http){
     $scope.$watchCollection('estoqueProd', function() {
         $scope.total = 0;
         angular.forEach($scope.estoqueProd, function (prod) {
-            $scope.total += prod.qtd * prod.valor;
+            $scope.total += parseFloat(prod.qtd * prod.valor);
         });
     });
 	   
