@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128225700) do
+ActiveRecord::Schema.define(version: 20151203065231) do
 
   create_table "caixas", force: :cascade do |t|
     t.datetime "data"
@@ -154,9 +154,10 @@ ActiveRecord::Schema.define(version: 20151128225700) do
 
   create_table "pedidos", force: :cascade do |t|
     t.integer  "client_id",  limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "status",     limit: 4
+    t.float    "total",      limit: 53
   end
 
   add_index "pedidos", ["client_id"], name: "index_pedidos_on_client_id", using: :btree

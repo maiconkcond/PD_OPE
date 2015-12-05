@@ -9,17 +9,17 @@ meuApp.controller('principal', function($scope, $resource, $http){
    
 
      //serviço
-    var Itens=$resource("http://localhost:3000/api/itens_pedidos/:id", { id: '@_id' });
-    var pedidoJson=$resource("http://localhost:3000/api/pedidos/:id", null, {
+    var Itens=$resource("/api/itens_pedidos/:id", { id: '@_id' });
+    var pedidoJson=$resource("/api/pedidos/:id", null, {
                                                       'update': { method:'PUT', params: {id:"@id"}}
                                                     });
-    var estoqueJson=$resource("http://localhost:3000/api/estoques/:id", null, {
+    var estoqueJson=$resource("/api/estoques/:id", null, {
                                                       'update': { method:'PUT', params: {id:"@id"}}
                                                     });
-    var caixaJson=$resource("http://localhost:3000/api/caixas/:id", null, {
+    var caixaJson=$resource("/api/caixas/:id", null, {
                                                       'update': { method:'PUT', params: {id:"@id"}}
                                                     });
-     var insumosJson=$resource("http://localhost:3000/api/insumos/:id", null, {
+     var insumosJson=$resource("/api/insumos/:id", null, {
                                                       'update': { method:'PUT', params: {id:"@id"}}
                                                     });
 
@@ -89,7 +89,7 @@ meuApp.controller('principal', function($scope, $resource, $http){
 
     //metodo que soma no caixa
     $scope.somaCaixa= function(){
-            alert("soma");
+           
                // Now call update passing in the ID first then the object you are updating
             $scope.caixaId= caixaJson.get({id:1}, function(data){
                 console.log($scope.caixaId);
@@ -102,8 +102,10 @@ meuApp.controller('principal', function($scope, $resource, $http){
     }
 
      $scope.salva= function(){
-        alert("clicou no salva");
+       
                
+        
+
         //pega o id do cliente
         var id = $("#client_id").val();
         //cria o json cm os dados e salva o pedido
@@ -116,22 +118,33 @@ meuApp.controller('principal', function($scope, $resource, $http){
              pedidoJson.query(function(data){
                      var lastid= data.length - 1;
                      $scope.lastPedido=data[lastid].id;
-
-                    
+                     
+                     
                       //for que salva os itens
                      for(var i=0 ; i < $scope.estoqueProd.length ; i++){
 
-                           console.log($scope.lastPedido);
+                       
                         $scope.itens_pedido={estoque_id: $scope.estoqueProd[i].estoque_id, pedido_id: $scope.lastPedido, quantidade:$scope.estoqueProd[i].qtd};
-                     
+                        pedidoJson.get({id:90}, function(data){
+                        data.total=6;
+                        data.$update({id:90});
+                      }); 
+
+                          
                         Itens.save({ itens_pedido: $scope.itens_pedido, function() {
                          // Optional function. Clear html form, redirect or whatever.
                          } });
 
-                     }
-                   
+                     }     
+            
+                console.log("PEDDIDOID="+$scope.lastPedido);
+               
               });                                    
              
+              console.log("PEDDIDOIDooo="+$scope.lastPedido);
+               
+                      
+                      
           window.location.href = "/home"; 
      }
 
@@ -156,14 +169,18 @@ meuApp.controller('principal', function($scope, $resource, $http){
         var nome = $("#estoque option:selected").text();
         var id = $("#estoque option:selected").val();
         var valor = $("#valor").val();
-    $scope.estoqueProd.push({estoque_id: id, nome: nome, valor: valor, qtd: $scope.qtd});
+        if($scope.qtd != null){
+          $scope.estoqueProd.push({estoque_id: id, nome: nome, valor: valor, qtd: $scope.qtd});
           $scope.estoque="";
           $scope.nome="";
           $scope.valor="";
           $scope.qtd="";
+        }
     }
 
-   
+   $scope.homeRedirect= function(){
+        window.location.href = "/home"; 
+   }
 
 });
 

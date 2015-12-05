@@ -70,26 +70,8 @@ function escondeDiv() {
       + Realizar pedido 
     </button>
 
-
-
-<h2 class="demoHeaders">Tabs</h2>
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">First</a></li>
-    <li><a href="#tabs-2">Second</a></li>
-    <li><a href="#tabs-3">Third</a></li>
-  </ul>
-  <div id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-  <div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-  <div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
-</div>
-
-
-
-
-
     <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-pills">
         <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
         <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
         <li><a href="#tab3" data-toggle="tab">ENTREGA</a></li>
@@ -126,9 +108,9 @@ function escondeDiv() {
                            endereço : <%= pedido.client.endereco %><br/>
                            <div class="iconsPedido">
                           
-                                 <a href="#" ng-click="ngExclui(<%=pedido.id%>)" class="excluir"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
-                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                                 <a href="#" ng-click="ngStatus(<%=pedido.id%>)"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="#" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)" class="excluir"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="#" ng-click="ngStatus(<%=pedido.id%>)" title="Clique para enviar para produção"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
                           </div>
                      </div>
                 <% end %>
@@ -164,9 +146,9 @@ function escondeDiv() {
                               endereço : <%= pedido.client.endereco %><br/>
                              <div class="iconsPedido">
   
-                                <a href="http://localhost:3000" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
-                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                                  <a href="#" ng-click="ngStatus2(<%=pedido.id%>)"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                  <a href="#" ng-click="ngStatus2(<%=pedido.id%>)" title="Clique para enviar para entrega"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
                              </div>
                         </div>
                                 <% end %>
@@ -204,9 +186,9 @@ function escondeDiv() {
                               endereço : <%= pedido.client.endereco %><br/>
                              <div class="iconsPedido">
  
-                                <a href="http://localhost:3000" title="Excluir pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a> 
-                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-                                <a href="http://localhost:3000/" ng-click="somaCaixa()"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a> 
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                <a href="http://localhost:3000/" ng-click="somaCaixa()" title="Clique para concluir o pedido"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
                              </div>
                         </div>
                                 <% end %>
@@ -245,7 +227,7 @@ function escondeDiv() {
                   <div class="field form-horizontal col-md-4"> 
                       <div class="input-group col-md-12"> 
                        <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
-                       <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", onclick: "reapareceDiv()", onBlur: "escondeDiv()" %>
+                       <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", onclick: "reapareceDiv()", onBlur: "escondeDiv()", required: "" %>
 
                      </div>
                    </div>
@@ -271,3 +253,12 @@ function escondeDiv() {
      </div>   
 
   </div>
+
+
+  <script>
+
+
+$( "#tabs" ).tabs();
+$( "#tooltip" ).tooltip();
+
+</script>

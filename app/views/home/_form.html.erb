@@ -12,7 +12,7 @@ $(document).ready(function()
       //maravilhoso ajax
            $.ajax({ 
            type: "GET", 
-           url: "http://localhost:3000/home/json/"+id,
+           url: "/home/json/"+id,
            dataType: "json", 
            success: function(data){ 
                for(i=0; i <= data.length;i++){
@@ -34,7 +34,7 @@ $(document).ready(function()
       //maravilhoso ajax
        $.ajax({ 
            type: "GET", 
-           url: "http://localhost:3000/home/jsonValor/"+id,
+           url: "/home/jsonValor/"+id,
            dataType: "json", 
            success: function(data){ 
                
@@ -110,32 +110,39 @@ $(document).ready(function()
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-          <% @pedido.each do |pedido| %>
-          <% if pedido.status == 1 %>
-          <div class="itensPedido">
-           <%= pedido.client.nome %><br/>
-           endereço : <%= pedido.client.endereco %><br/>
-           <div class="iconsPedido">
-            <% agora=Time.new %>
-            <% 
-            now=agora.min
-            pd=pedido.created_at.min
-            dif=now - pd
+           <% @pedido.each do |pedido| %>
 
-            if dif > 1 or dif < 0
-              ok="atrasado!!"
-            else
-              ok="em espera!"
-            end
-            %>
-            <%= now %>
-            <%= pd %>
-            <%= dif %>
-            <%= ok %>
-            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
-            <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-          </div>
-        </div>
+                  <% if pedido.status == 1 %>
+
+                   <% agora=Time.new %>
+                    <% 
+                    now=agora.min
+                    pd=pedido.created_at.min
+                    dif=now - pd
+
+                    if dif > 1 or dif < 0
+                      ok="atrasado!!"
+                    else
+                      ok="em espera!"
+                    end
+                    %>
+                   
+                   <%
+                     if dif > 1
+                   %>
+                     <div class="itensPedido2">
+                   <% else %>
+                      <div class="itensPedido">
+                         <% end %>
+                           <%= pedido.client.nome %><br/>
+                           endereço : <%= pedido.client.endereco %><br/>
+                           <div class="iconsPedido">
+                          
+                                 <a href="#" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)" class="excluir"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="#" ng-click="ngStatus(<%=pedido.id%>)" title="Clique para enviar para produção"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                          </div>
+                     </div>
         <% end %>
         <% end %>
       </div>
@@ -146,8 +153,11 @@ $(document).ready(function()
          <%= pedido.client.nome %><br/>
          endereço : <%= pedido.client.endereco %><br/>
          <div class="iconsPedido">
-          <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-        </div>
+  
+                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                <a href="#" ng-click="ngStatus2(<%=pedido.id%>)" title="Clique para enviar para entrega"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+          </div>
       </div>
       <% end %>
       <% end %>
@@ -181,15 +191,11 @@ $(document).ready(function()
                            <% end %>
 
                               <%= pedido.client.nome %><br/>
-                              endereço : <%= pedido.client.endereco %><br/>
-                             <div class="iconsPedido">
-                             
-                                <%= now %>
-                                <%= pd %>
-                                <%= dif %>
-                                <%= ok %>
-                                <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Confirmar exclusão' } %>
-                                <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                              <div class="iconsPedido">
+ 
+                                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a> 
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                <a href="http://localhost:3000/" ng-click="somaCaixa()" title="Clique para concluir o pedido"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
                              </div>
                         </div>
                                 <% end %>
@@ -230,7 +236,7 @@ $(document).ready(function()
             <div class="field form-horizontal col-md-4"> 
               <div class="input-group col-md-12"> 
                  <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
-        <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone" %>
+        <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", required:""%>
         
               </div>
             </div>
@@ -304,7 +310,7 @@ $(document).ready(function()
 
             <div class="field form-horizontal col-md-2">
               <%= f.label :cep, class: "sr-only" %>
-              <div class="input-group col-md-12">
+              <div class="input-group col-md-15">
                 <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP", value: client.cep, disabled:true %>
               </div>
             </div>
@@ -339,12 +345,12 @@ $(document).ready(function()
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value=""/> 
+                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value="" disabled/> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" value="1"/> 
+                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" value="1" /> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-1">
@@ -387,7 +393,13 @@ $(document).ready(function()
             </div>
             <div class="row">
                       <div class="field form-horizontal col-md-6">
-                        <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">Forma de pagamento</select>
+                        <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">
+                        <option>FORMA DE PAGAMENTO</option>
+                          <option value="1">DINHEIRO</option>
+                          <option value="2">CARTÃO VISA</option>
+                          <option value="3">CARTÃO MASTER</option>
+                          <option value="4">CARTÃO ELO</option>
+                        </select>
                       </div>
                       <div class="field form-horizontal col-md-6">
                           <h2 class="valorTotal" >R$ {{total}}</h2>
@@ -402,7 +414,7 @@ $(document).ready(function()
                           <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar" />
                          </form>
                         
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+                          <button type="button" ng-click="homeRedirect()"; class="btn btn-default" data-dismiss="modal">Sair</button>
 
                          
 

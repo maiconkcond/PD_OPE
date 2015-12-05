@@ -30,5 +30,3 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     $("#error_explanation").html(er);
        
 });
-
- 

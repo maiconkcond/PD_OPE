@@ -21,7 +21,7 @@ default: &default
   username: root
   password: 
   socket: /opt/lampp/var/mysql/mysql.sock
-  #socket: /var/run/mysqld/mysqld.sock
+
 
 development:
   <<: *default
@@ -57,4 +57,4 @@ production:
   <<: *default
   database: PD_OPE_production
   username: PD_OPE
-  password: <%= ENV['mysql2://pizzariadelivery:Xy36p5X!H-K3@mysql2.gear.host/pizzariadelivery'] %>
+  password: <%= ENV['PD_OPE_DATABASE_PASSWORD'] %>
