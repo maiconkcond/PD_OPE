@@ -9,6 +9,6 @@ class Insumo < ActiveRecord::Base
 
   def uppercase_campo
     self.descricao.upcase!
-    self.unid_med.upcase!
+    #self.unid_med.upcase!
   end
 end

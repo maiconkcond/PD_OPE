@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128225700) do
+ActiveRecord::Schema.define(version: 20151205032316) do
 
   create_table "caixas", force: :cascade do |t|
     t.datetime "data"
@@ -38,18 +38,6 @@ ActiveRecord::Schema.define(version: 20151128225700) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string   "first_name", limit: 255
-    t.string   "last_name",  limit: 255
-    t.string   "phone",      limit: 255
-    t.string   "email",      limit: 255
-    t.string   "street",     limit: 255
-    t.string   "zip",        limit: 255
-    t.string   "city",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "estoques", force: :cascade do |t|
     t.string   "nome",             limit: 255
     t.integer  "quantidade",       limit: 4
@@ -62,7 +50,7 @@ ActiveRecord::Schema.define(version: 20151128225700) do
     t.text     "cod_barras",       limit: 65535
     t.decimal  "valor_custo",                    precision: 10
     t.decimal  "margem_lucro",                   precision: 10
-    t.decimal  "valor_venda",                    precision: 10
+    t.float    "valor_venda",      limit: 53
     t.text     "obs",              limit: 65535
     t.string   "insumo2",          limit: 255
     t.string   "insumo1",          limit: 255
@@ -99,7 +87,6 @@ ActiveRecord::Schema.define(version: 20151128225700) do
     t.string   "nome",       limit: 255
     t.string   "tel1",       limit: 255
     t.string   "tel2",       limit: 255
-    t.string   "tel3",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -145,6 +132,15 @@ ActiveRecord::Schema.define(version: 20151128225700) do
     t.string   "unid_med",   limit: 255
   end
 
+  create_table "itens_caixas", force: :cascade do |t|
+    t.decimal  "total",                          precision: 10
+    t.decimal  "total_retirado",                 precision: 10
+    t.integer  "id_forma_pagamento", limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "id_caixas",          limit: 255
+  end
+
   create_table "itens_pedidos", force: :cascade do |t|
     t.integer  "estoque_id",       limit: 4
     t.integer  "pedido_id",        limit: 4
@@ -167,12 +163,20 @@ ActiveRecord::Schema.define(version: 20151128225700) do
 
   create_table "pedidos", force: :cascade do |t|
     t.integer  "client_id",  limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "status",     limit: 4
+    t.float    "total",      limit: 53
   end
 
   add_index "pedidos", ["client_id"], name: "index_pedidos_on_client_id", using: :btree
+
+  create_table "produtos", force: :cascade do |t|
+    t.string   "tipo",       limit: 255
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "unid_meds", force: :cascade do |t|
     t.string   "descricao",  limit: 255
@@ -201,6 +205,8 @@ ActiveRecord::Schema.define(version: 20151128225700) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "estoques", "fabricantes"
+  add_foreign_key "estoques", "fornecedors"
+  add_foreign_key "estoques", "grupo_estoques"
   add_foreign_key "itens_pedidos", "estoques"
   add_foreign_key "itens_pedidos", "pedidos"
   add_foreign_key "pedidos", "clients"

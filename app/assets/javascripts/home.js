@@ -5,6 +5,8 @@
 
  function( $ ) {
 $( document ).ready(function() {
+
+
 $('#cssmenu li.has-sub>a').on('click', function(){
 		$(this).removeAttr('href');
 		var element = $(this).parent('li');

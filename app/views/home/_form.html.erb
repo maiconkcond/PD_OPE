@@ -12,7 +12,7 @@ $(document).ready(function()
       //maravilhoso ajax
            $.ajax({ 
            type: "GET", 
-           url: "http://localhost:3000/home/json/"+id,
+           url: "/home/json/"+id,
            dataType: "json", 
            success: function(data){ 
                for(i=0; i <= data.length;i++){
@@ -34,7 +34,7 @@ $(document).ready(function()
       //maravilhoso ajax
        $.ajax({ 
            type: "GET", 
-           url: "http://localhost:3000/home/jsonValor/"+id,
+           url: "/home/jsonValor/"+id,
            dataType: "json", 
            success: function(data){ 
                
@@ -106,35 +106,43 @@ $(document).ready(function()
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">EM ESPERA</a></li>
         <li><a href="#tab2" data-toggle="tab">EM PRODUÇÃO</a></li>
+        <li><a href="#tab3" data-toggle="tab">ENTREGA</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-          <% @pedido.each do |pedido| %>
-          <% if pedido.status == 1 %>
-          <div class="itensPedido">
-           <%= pedido.client.nome %><br/>
-           endereço : <%= pedido.client.endereco %><br/>
-           <div class="iconsPedido">
-            <% agora=Time.new %>
-            <% 
-            now=agora.min
-            pd=pedido.created_at.min
-            dif=now - pd
+           <% @pedido.each do |pedido| %>
 
-            if dif > 1 or dif < 0
-              ok="atrasado!!"
-            else
-              ok="em espera!"
-            end
-            %>
-            <%= now %>
-            <%= pd %>
-            <%= dif %>
-            <%= ok %>
-            <%= link_to 'excluir', pedido, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-          </div>
-        </div>
+                  <% if pedido.status == 1 %>
+
+                   <% agora=Time.new %>
+                    <% 
+                    now=agora.min
+                    pd=pedido.created_at.min
+                    dif=now - pd
+
+                    if dif > 1 or dif < 0
+                      ok="atrasado!!"
+                    else
+                      ok="em espera!"
+                    end
+                    %>
+                   
+                   <%
+                     if dif > 1
+                   %>
+                     <div class="itensPedido2">
+                   <% else %>
+                      <div class="itensPedido">
+                         <% end %>
+                           <%= pedido.client.nome %><br/>
+                           endereço : <%= pedido.client.endereco %><br/>
+                           <div class="iconsPedido">
+                          
+                                 <a href="#" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)" class="excluir"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                 <a href="#" ng-click="ngStatus(<%=pedido.id%>)" title="Clique para enviar para produção"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                          </div>
+                     </div>
         <% end %>
         <% end %>
       </div>
@@ -145,12 +153,57 @@ $(document).ready(function()
          <%= pedido.client.nome %><br/>
          endereço : <%= pedido.client.endereco %><br/>
          <div class="iconsPedido">
-          <a href="../listar/<%= pedido.id%>"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
-        </div>
+  
+                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                <a href="#" ng-click="ngStatus2(<%=pedido.id%>)" title="Clique para enviar para entrega"><%= image_tag "seta.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+          </div>
       </div>
       <% end %>
       <% end %>
     </div>
+
+
+     
+             <!-- tab de entrega-->
+              <div class="tab-pane" id="tab3">
+                      <% @pedido.each do |pedido| %>
+                      <% if pedido.status == 3 %>
+                      
+                          <% agora=Time.new %>
+                          <% 
+                          now=agora.min
+                          pd=pedido.created_at.min
+                          dif=now - pd
+
+                          if dif > 1 or dif < 0
+                            ok="atrasado!!"
+                          else
+                            ok="em espera!"
+                          end
+                          %>
+                          <%
+                           if dif > 1 or dif < 0
+                          %>
+                     <div class="itensPedido2">
+                          <% else %>
+                       <div class="itensPedido">
+                           <% end %>
+
+                              <%= pedido.client.nome %><br/>
+                              <div class="iconsPedido">
+ 
+                                <a href="http://localhost:3000" title="Clique para excluir o pedido" ng-click="ngExclui(<%=pedido.id%>)"><%= image_tag "erase.png", width: '25', height: '25', alt: 'lista de itens' %></a> 
+                                <a href="../listar/<%= pedido.id%>" title="Clique para visualizar os itensdo pedido"><%= image_tag "list.png", width: '25', height: '25', alt: 'lista de itens' %> </a>
+                                <a href="http://localhost:3000/" ng-click="somaCaixa()" title="Clique para concluir o pedido"><%= image_tag "check.png", width: '25', height: '25', alt: 'lista de itens' %></a>
+                             </div>
+                        </div>
+                                <% end %>
+                                <% end %>
+                    </div>
+
+
+
   </div>
 </div>
 </div>
@@ -183,7 +236,7 @@ $(document).ready(function()
             <div class="field form-horizontal col-md-4"> 
               <div class="input-group col-md-12"> 
                  <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
-        <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone" %>
+        <%= f.search_field :tel1_cont, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Telefone", required:""%>
         
               </div>
             </div>
@@ -216,14 +269,14 @@ $(document).ready(function()
 
           <div class="row">
           <div class="field form-horizontal col-md-2">
-            <%= f.label :client_id, class: "sr-only" %>
+            ID:
             <div class="input-group col-md-12">
               
               <input id="client_id" name="client_id" class="form-control col-sm-12" placeholder="ID" ng-model"cli_id" value="<%=client.id%>" disabled>
             </div>
           </div>
           <div class="field form-horizontal col-md-10">
-              <%= f.label :nome, class: "sr-only" %>
+              Nome:
               <div class="input-group col-md-12">
                 <%= f.text_field :nome, class: "form-control", id: "exampleInputPassword3", placeholder: "Nome", value: client.nome, disabled:true  %>
               </div>
@@ -233,14 +286,14 @@ $(document).ready(function()
 
           <div class="row">
             <div class="field form-horizontal col-md-9">
-              <%= f.label :endereco, class: "sr-only" %>
+              Endereço:
               <div class="input-group col-md-12">
                 <%= f.text_field :endereco, class: "form-control", id: "exampleInputPassword3", placeholder: "Endereço", value:client.endereco, disabled:true %>
               </div>
             </div>
 
             <div class="field form-horizontal col-md-3">
-              <%= f.label :complemento, class: "sr-only" %>
+              Complemento:
               <div class="input-group col-md-12">
                 <%= f.text_field :complemento, class: "form-control", id: "exampleInputPassword3", placeholder: "Compl.", value:client.complemento, disabled:true %>
               </div>
@@ -248,21 +301,21 @@ $(document).ready(function()
           </div>
 
            <div class="row">
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :bairro, class: "sr-only" %>
+            <div class="field form-horizontal col-md-9">
+              Bairro:
               <div class="input-group col-md-12">
                 <%= f.text_field :bairro, class: "form-control", id: "exampleInputPassword3", placeholder: "Bairro", value:client.bairro, disabled:true  %>
               </div>
             </div>
 
-            <div class="field form-horizontal col-md-2">
-              <%= f.label :cep, class: "sr-only" %>
+            <div class="field form-horizontal col-md-3">
+              Cep:
               <div class="input-group col-md-12">
                 <%= f.text_field :cep, class: "form-control", id: "exampleInputPassword3", placeholder: "CEP", value: client.cep, disabled:true %>
               </div>
             </div>
-            <div class="field form-horizontal col-md-5">
-              <%= f.label :obs, class: "sr-only" %>
+            <div class="field form-horizontal col-md-12  ">
+              Obs:
               <div class="input-group col-md-12">
                 <%= f.text_field :obs, class: "form-control", id: "exampleInputPassword3", placeholder: "obs",value:client.obs, disabled:true %>
               </div>
@@ -292,12 +345,12 @@ $(document).ready(function()
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value=""/> 
+                                  <input id="valor" ng-model="valorVenda" name="valor" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Valor" value="" disabled/> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-2">
                                 <div class="input-group col-md-12">
-                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" value="1"/> 
+                                  <input id="qtd" ng-model="qtd" name="qtd" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Qtd" value="1" /> 
                                 </div>
                               </div>
                               <div class="field form-horizontal col-md-1">
@@ -329,8 +382,8 @@ $(document).ready(function()
                             <td ng-model="prod.id">{{estoque.id}}</td>
                             <td>{{estoque.nome}}</td>
                             <td>{{estoque.qtd}}</td>
-                            <td>{{estoque.valor}}</td>
-                            <td>{{estoque.valor * estoque.qtd}}</td> 
+                            <td><%= number_to_currency("{{estoque.valor}}")%></td>
+                            <td><%= number_to_currency("{{estoque.valor * estoque.qtd}}")%></td> 
                             <td> <button type="button"  ng-click="excluir($index)">Excluir</button></td> 
                             
                           </tr>
@@ -340,10 +393,16 @@ $(document).ready(function()
             </div>
             <div class="row">
                       <div class="field form-horizontal col-md-6">
-                        <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">Forma de pagamento</select>
+                        <select id="formapgto" name="formapgto" type="text" class="form-control col-sm-12" id="exampleInputAmount" placeholder="Selecione o produto">
+                        <option>FORMA DE PAGAMENTO</option>
+                          <option value="1">DINHEIRO</option>
+                          <option value="2">CARTÃO VISA</option>
+                          <option value="3">CARTÃO MASTER</option>
+                          <option value="4">CARTÃO ELO</option>
+                        </select>
                       </div>
                       <div class="field form-horizontal col-md-6">
-                          <h2 class="valorTotal" >R$ {{total}}</h2>
+                          <h2 class="valorTotal" ><%= number_to_currency("{{total}}") %></h2>
                       </div>
             </div>
 
@@ -355,7 +414,8 @@ $(document).ready(function()
                           <input type="submit" class="btn btn-primary btn-lg " value="Finalizar / Salvar" />
                          </form>
                         
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+                          <button type="button" ng-click="homeRedirect()"; class="btn btn-default" data-dismiss="modal">Sair</button>
+                          <button type="button" ng-click="teste()"; class="btn btn-default" data-dismiss="modal">teste</button>
 
                          
 

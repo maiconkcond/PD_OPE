@@ -2,7 +2,7 @@ class PedidosController < ApplicationController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   
- respond_to :html
+ 
   # GET /pedidos
   # GET /pedidos.json
   def index
@@ -28,6 +28,22 @@ class PedidosController < ApplicationController
   def status
     @pedido = Pedido.find(params[:id])
     @pedido.status = 2
+    
+    respond_to do |format|
+      if @pedido.save
+        format.html { redirect_to "http://localhost:3000/", notice: 'Pedido was successfully created.' }
+        format.json { render :show, status: :created, location: @pedido }
+      else
+        format.html { render :new }
+        format.json { render json: @pedido.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  def status2
+    @pedido = Pedido.find(params[:id])
+    @pedido.status = 3
     
     respond_to do |format|
       if @pedido.save
@@ -109,7 +125,7 @@ class PedidosController < ApplicationController
   def destroy
     @pedido.destroy
     respond_to do |format|
-      format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
+      format.html { redirect_to 'http://localhost:3000/', notice: 'Pedido was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

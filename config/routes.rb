@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :itens_caixas
   resources :payments
   resources :caixas
   get 'control_users/index'
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   resources :insumos
   resources :itens_pedidos
   resources :pedidos
-  resources :estoques
   resources :estoques
   resources :grupo_estoques
   resources :funcionarios
@@ -24,12 +24,29 @@ Rails.application.routes.draw do
   get 'home/index'
 
 
+
    namespace :api, defaults: {format: 'json'} do 
      resources :itens_pedidos
    end
 
    namespace :api, defaults: {format: 'json'} do 
      resources :pedidos
+   end
+
+   namespace :api, defaults: {format: 'json'} do 
+     resources :estoques
+   end
+
+   namespace :api, defaults: {format: 'json'} do 
+     resources :caixas
+   end
+
+   namespace :api, defaults: {format: 'json'} do 
+     resources :insumos
+   end
+
+   namespace :api, defaults: {format: 'json'} do 
+     resources :itens_caixas
    end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -41,8 +58,10 @@ Rails.application.routes.draw do
   get '/home/cadastra/:id/:id_est' => 'home#cadastra'
   post '/home/salva' => 'home#salva'
   get 'status/:id' => 'pedidos#status'
+  get 'status2/:id' => 'pedidos#status2'
   get '/home/json/:id' => 'home#json'
   get '/home/jsonValor/:id' => 'home#jsonValor'
+  get '/home/teste/:id' => 'home#teste'
   
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

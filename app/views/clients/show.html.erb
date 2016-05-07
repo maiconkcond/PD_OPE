@@ -1,0 +1,166 @@
+
+ <script type="text/javascript">
+$(document).ready(function()
+{
+  $("#mModal").modal("show");
+})
+</script>
+
+
+<%# Cabeçalho da página (NAVBAR) -%>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= image_tag "LOGO3.png", size: "130x60" %>
+      <span class="paginador"><a href="" class="paginador"> INICIO </a> > </span>
+      <span class="paginador ativo">LISTA DE CLIENTES</span>
+    </div>
+  </div>
+</nav>
+
+<%# Titulo da página separado por uma 'linha' -%>
+<h1 class="titulo-pagina">Clientes</h1>
+<hr size="10" width="100%">
+
+<%# Listagem de clientes -%>
+<div class="col-md-12">
+  <div class="row-fluid">
+    <div class="col-md-6 novo">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Inserir novo cliente</button>
+    </div>
+    <div class="col-md-6">
+      <%= search_form_for @q, :url => {:action => "new"}, :html => { :class => "form-inline form-group consultar" } do |f| %>
+      <%= f.search_field :nome, class: "form-control col-sm-12", id: "exampleInputAmount", placeholder: "Buscar..." %>
+      <button type="submit" class="btn btn btn-primary">Ir!</button>
+    </div>
+    <% end %>
+  </div>
+  <table class="responstable">
+    <thead>
+      <tr>
+        <th data-th="Driver details"><span>NOME</span></th>
+        <th >ENDEREÇO</th>
+        <th >COMPLEMENTO</th>
+        <th >BAIRRO</th>
+        <th >CIDADE</th>
+        <th >CEP</th>
+        <th >TELEFONE</th>
+        <th >CELULAR</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody >
+      <% @clients.each do |client| %>
+      <tr >
+        <td><%= client.nome %></td>
+        <td><%= client.endereco %></td>
+        <td><%= client.complemento %></td>
+        <td><%= client.bairro %></td>
+        <td><%= client.cidade %></td>
+        <td><%= client.cep %></td>
+        <td><%= client.tel1 %></td>
+        <td><%= client.cel1 %></td>
+        <td><%= link_to image_tag('view.png'), client %></td>
+        <td><%= link_to image_tag('editar.png'), edit_client_path(client) %></td>
+        <td><%= link_to image_tag('excluir.png'), client, method: :delete, data: { confirm: 'Confirmar' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%# Modal para cadastro de clientes -%>
+<div class="modal fade modalCadastro" id="mModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <div class="row">
+         <div class="col-md-3">
+           <%= image_tag "client.png", alt: 'Cliente', size: "72x72" %>
+         </div>
+         <div class="col-md-9">
+           <h1 class="modal-title" id="myModalLabel">Cadastro de Cliente</h1>
+         </div>
+       </div>
+     </div>
+     <div class="modal-body">
+        <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @client.nome %>
+</p>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @client.endereco %>
+</p>
+
+<p>
+  <strong>Complemento:</strong>
+  <%= @client.complemento %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @client.bairro %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @client.cidade %>
+</p>
+
+<p>
+  <strong>Cep:</strong>
+  <%= @client.cep %>
+</p>
+
+<p>
+  <strong>Tel1:</strong>
+  <%= @client.tel1 %>
+</p>
+
+<p>
+  <strong>Tel2:</strong>
+  <%= @client.tel2 %>
+</p>
+
+<p>
+  <strong>Cel1:</strong>
+  <%= @client.cel1 %>
+</p>
+
+<p>
+  <strong>Cel2:</strong>
+  <%= @client.cel2 %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @client.email %>
+</p>
+
+<p>
+  <strong>Obs:</strong>
+  <%= @client.obs %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<a href="http://localhost:3000/clients/new">Voltar</a>   
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+

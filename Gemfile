@@ -16,6 +16,8 @@ gem 'devise-bootstrap-views'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 
+gem 'twitter-bootstrap-rails'
+
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

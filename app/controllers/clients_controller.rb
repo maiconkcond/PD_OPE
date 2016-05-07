@@ -12,9 +12,17 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
+
   end
 
   def edit
+
+    @pedido = Pedido.new
+    @pedido = Pedido.all
+    @q = Client.ransack(params[:q])
+    @clients = @q.result
+     
+
   end
 
   def create
