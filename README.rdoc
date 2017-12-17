@@ -1,36 +1,8 @@
-== README
+# Descriçao
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este projeto foi desenvolvido como trabalho de conclusao de curso (TCC). O sistema consite em um sistema de gerencialmente de fastfood (mais espicificamente uma pizzaria).
+Foi utilizado RoR e Angular.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-* IDEIAS:
-
-	Criar modulo onde os clientes consegue aconpanhar o status dos pedidos de casa
-	Criar uma forma de organizar entregas via proximidade uma da outra usando google maps 
-
-	Autorização de Usuario foi utilizado gem "Pundit"
-
-Please feel free to use a different markup language if you do not plan to run
-
-http://guides.rubyonrails.org/active_record_validations.html
-<tt>rake doc:app</tt>.
+:pizza: :pizza: :pizza:
+:mortar_board: :mortar_board: :mortar_board:
